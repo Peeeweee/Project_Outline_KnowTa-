@@ -10,29 +10,38 @@ export function useSectionObserver() {
     const wrappers = document.querySelectorAll<HTMLElement>('[data-scene]');
     if (!wrappers.length) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Find the entry that most recently crossed into the viewport top
-        const active = getActiveSections();
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            const slug = entry.target.getAttribute('data-scene');
-            const idx = active.findIndex(s => s.slug === slug);
-            if (idx >= 0) {
-              setSection(idx);
-            }
+    let observer: IntersectionObserver | undefined;
+    const observe = () => {
+      observer?.disconnect();
+      observer = new IntersectionObserver(
+        () => {
+          // Select the section at the reading line, including backward jumps.
+          const active = getActiveSections();
+          const readingLine = window.innerHeight * 0.15;
+          const wrapper = Array.from(wrappers).find((element) => {
+            const rect = element.getBoundingClientRect();
+            return rect.top <= readingLine && rect.bottom > readingLine;
+          });
+          const idx = active.findIndex(s => s.slug === wrapper?.dataset.scene);
+          if (idx >= 0) {
+            setSection(idx);
           }
+        },
+        {
+          // IntersectionObserver percentages are relative to width, not height.
+          rootMargin: `-${window.innerHeight * 0.1}px 0px -${window.innerHeight * 0.8}px 0px`,
+          threshold: 0,
         }
-      },
-      {
-        // Trigger when the top of the wrapper crosses the top 20% of the viewport
-        rootMargin: '-10% 0px -80% 0px',
-        threshold: 0,
-      }
-    );
+      );
 
-    wrappers.forEach(w => observer.observe(w));
+      wrappers.forEach(w => observer?.observe(w));
+    };
+    observe();
+    window.addEventListener('resize', observe);
 
-    return () => observer.disconnect();
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener('resize', observe);
+    };
   }, [setSection, getActiveSections, shortMode]);
 }
