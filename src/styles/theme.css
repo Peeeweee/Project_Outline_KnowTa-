@@ -1,0 +1,388 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@500&family=Instrument+Serif:ital@1&display=swap');
+
+@import "tailwindcss";
+
+/* ============================================================
+   Design tokens - Minimalist Monochrome
+   ============================================================ */
+:root {
+  /* Core Palette */
+  --black: #0A0A0B;
+  --ink-900: #111113;
+  --ink-800: #1A1A1D;
+  --ink-700: #26262A;
+  --gray-500: #6B6B72;
+  --gray-400: #8E8E94;
+  --gray-300: #B9B9BF;
+  --gray-200: #DCDCDF;
+  --paper: #F3F3F1;
+  --white: #FFFFFF;
+
+  /* Legacy aliases to new pattern helpers so nothing breaks */
+  --night: var(--black);
+  --ink: var(--black);
+  --color-muted: var(--gray-500);
+  --color-hairline: rgba(255, 255, 255, 0.14);
+  
+  /* Fallback aliases for data colors (since we use patterns now, they map to monochrome) */
+  --color-human: var(--white);
+  --color-ai: var(--gray-300);
+  --color-conflict: var(--gray-500);
+
+  /* Typography */
+  --font-headline: 'Geist', system-ui, sans-serif;
+  --font-body: 'Geist', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  --font-script: 'Instrument Serif', serif;
+
+  --max-width: 1280px;
+  --nav-height: 64px;
+}
+
+@theme {
+  --color-black: var(--black);
+  --color-ink-900: var(--ink-900);
+  --color-ink-800: var(--ink-800);
+  --color-ink-700: var(--ink-700);
+  --color-gray-500: var(--gray-500);
+  --color-gray-400: var(--gray-400);
+  --color-gray-300: var(--gray-300);
+  --color-gray-200: var(--gray-200);
+  --color-paper: var(--paper);
+  --color-white: var(--white);
+
+  --color-night: var(--black);
+  --color-ink: var(--black);
+  --color-muted: var(--gray-500);
+  --color-human: var(--white);
+  --color-ai: var(--gray-300);
+  --color-conflict: var(--gray-500);
+
+  --font-headline: var(--font-headline);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+  --font-script: var(--font-script);
+
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  --breakpoint-laptop: 1366px;
+  --breakpoint-proj: 1920px;
+}
+
+/* ============================================================
+   Global reset and base
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto;
+  font-size: 18px;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-headline);
+  text-transform: none; /* Sentence case now */
+}
+
+code, pre, .mono {
+  font-family: var(--font-mono);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gray-400);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--black);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 2px;
+}
+
+/* ============================================================
+   Utility classes (Type Scale & Design Rules)
+   ============================================================ */
+
+.headline, h1 {
+  font-size: clamp(48px, 6vw, 96px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+h2 {
+  font-size: clamp(36px, 4.2vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.big-number {
+  font-size: clamp(64px, 7vw, 112px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.sub {
+  font-size: clamp(20px, 1.5vw, 24px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--gray-400);
+  max-width: 44ch;
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.card-text {
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.label, .card-index, .section-tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gray-500);
+}
+.label::before {
+  content: "// ";
+}
+
+.script-word {
+  font-family: var(--font-script);
+  font-style: italic;
+  text-transform: lowercase;
+  font-weight: 400;
+  font-size: 1.2em;
+  display: inline-block;
+  line-height: 1;
+}
+
+.body-text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(18px, 1.3vw, 22px);
+  line-height: 1.5;
+  max-width: 60ch;
+}
+
+/* ============================================================
+   Section Themes (Dark/Light)
+   ============================================================ */
+.glow-dark {
+  background-color: var(--black);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.glow-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top center, rgba(255,255,255,0.07) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.paper-light {
+  background-color: var(--paper);
+  color: var(--black);
+  position: relative;
+}
+.paper-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at bottom center, rgba(10,10,11,0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.paper-light h1, .paper-light h2, .paper-light h3, .paper-light .headline {
+  color: var(--black);
+}
+.paper-light .label, .paper-light .sub {
+  color: var(--gray-500);
+}
+.paper-light .hairline {
+  border-color: rgba(10, 10, 11, 0.14);
+}
+
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.hairline {
+  border: 1px solid var(--color-hairline);
+}
+
+/* ============================================================
+   Data Meaning Patterns
+   ============================================================ */
+.enc-human {
+  background-color: var(--white);
+  border: 1px solid var(--white);
+}
+.paper-light .enc-human {
+  background-color: var(--black);
+  border-color: var(--black);
+}
+
+.enc-ai {
+  background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255,255,255,0.2) 4px, rgba(255,255,255,0.2) 8px);
+  border: 1px dashed var(--white);
+}
+.paper-light .enc-ai {
+  background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(10,10,11,0.2) 4px, rgba(10,10,11,0.2) 8px);
+  border: 1px dashed var(--black);
+}
+
+.enc-conflict {
+  background: transparent;
+  border: 1px dotted var(--white);
+}
+.paper-light .enc-conflict {
+  border: 1px dotted var(--black);
+}
+
+/* ============================================================
+   Shape Language & Layout Components (CSS versions)
+   ============================================================ */
+.frame {
+  border-radius: 32px;
+  border: 1px solid var(--color-hairline);
+  padding: 8px;
+  background: transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.paper-light .frame {
+  border-color: rgba(10, 10, 11, 0.14);
+}
+.frame:hover {
+  transform: translateY(-4px) rotateX(2deg) rotateY(2deg); /* lean max 5deg */
+  box-shadow: 0 10px 30px rgba(255,255,255,0.05);
+}
+.paper-light .frame:hover {
+  box-shadow: 0 10px 30px rgba(10,10,11,0.05);
+}
+@media (prefers-reduced-motion: reduce) {
+  .frame:hover { transform: none; box-shadow: none; }
+}
+
+.frame-inner {
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 28px 36px;
+  background-color: rgba(255, 255, 255, 0.03);
+}
+.paper-light .frame-inner {
+  border-color: rgba(10, 10, 11, 0.08);
+  background-color: rgba(10, 10, 11, 0.03);
+}
+
+.chip-ui, .pill-btn {
+  border-radius: 999px;
+  border: 1px solid var(--color-hairline);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 4px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.paper-light .chip-ui, .paper-light .pill-btn {
+  border-color: rgba(10, 10, 11, 0.14);
+}
+
+.container-ui {
+  width: min(1200px, calc(100% - 2 * clamp(24px, 6vw, 96px)));
+  margin-inline: auto;
+}
+
+/* ============================================================
+   Print Stylesheet
+   ============================================================ */
+@media print {
+  @page { size: landscape; margin: 0; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+  }
+  html, body {
+    background-color: #FFFFFF !important;
+    color: #0A0A0B !important;
+    overflow: visible !important;
+    height: auto !important;
+    font-size: 15px !important;
+  }
+  body::before, body::after { display: none !important; }
+  .no-print, header, nav, .fixed, canvas, [role="dialog"], [role="region"], [aria-label="Section progress"], [aria-label="Settings"], .grain { display: none !important; }
+  .print-main { padding-top: 0 !important; display: block !important; height: auto !important; overflow: visible !important; }
+  .print-scene {
+    page-break-before: auto !important; page-break-after: always !important; break-after: page !important;
+    page-break-inside: avoid !important; break-inside: avoid !important;
+    min-height: 100vh !important; height: 100vh !important; max-height: 100vh !important;
+    display: block !important; position: relative !important; overflow: hidden !important;
+    background-color: #FFFFFF !important; color: #0A0A0B !important;
+  }
+  .print-scene > div { position: relative !important; top: auto !important; height: 100% !important; max-height: 100% !important; overflow: hidden !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; }
+  .print-scene section { position: relative !important; min-height: 100vh !important; height: 100vh !important; max-height: 100vh !important; background-color: #FFFFFF !important; color: #0A0A0B !important; background-image: none !important; }
+  .print-scene, .print-scene *, .print-scene [style*="color: var(--white)"], .print-scene [style*="color: rgb(255, 255, 255)"], .print-scene [style*="color: white"] { color: #0A0A0B !important; opacity: 1 !important; transform: none !important; }
+  .print-scene [style*="background-color: var(--night)"], .print-scene [style*="background-color: var(--black)"], .print-scene .glow-dark, .print-scene .bg-night { background-color: #FFFFFF !important; background-image: none !important; }
+  .print-scene .border, .print-scene .border-t, .print-scene .border-b, .print-scene .border-l, .print-scene .border-r, .print-scene [style*="border-color"] { border-color: #D1D5DB !important; }
+  .print-scene svg text { fill: #0A0A0B !important; }
+  .print-scene svg path, .print-scene svg line, .print-scene svg rect, .print-scene svg circle { stroke: #0A0A0B !important; }
+}

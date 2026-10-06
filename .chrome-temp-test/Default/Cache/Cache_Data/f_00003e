@@ -1,0 +1,472 @@
+export const scenes = [
+	{
+		id: "S01",
+		chapter: "ch1",
+		section: "Title",
+		headline: "Can you tell which song is human?",
+		plain: "Two waveforms look the same. One song is human. One is AI.",
+		technical: "Know-Ta!: A Two-Branch Deep Learning Framework for AI-Generated Music Detection with Cross-Platform Evaluation and Bayesian Uncertainty Estimation.",
+		takeaway: "LISTENING ALONE IS NO LONGER ENOUGH.",
+		authors: "Delgado, Kent Paulo R.; Delgado, Earl Josh B.; Labay, John Renan N. | College of Information and Computing, University of Southeastern Philippines, Davao City",
+		hero: {
+			label: "AI-GENERATED MUSIC DETECTION",
+			headlineLine1: "KNOW WHAT",
+			headlineLine2: "YOU'RE",
+			scriptWords: [
+				"hearing",
+				"streaming",
+				"paying for",
+				"trusting"
+			],
+			body: "A two-branch deep learning system that splits a song into voice and instruments, judges each part, and shows how sure it is.",
+			exploreLink: "EXPLORE THE STUDY ↗",
+			tags: [
+				"AUDIO BRANCH / EFFICIENTNET-B0",
+				"VOCAL BRANCH / BI-LSTM",
+				"FUSION / ATTENTION",
+				"CONFIDENCE / MC DROPOUT"
+			],
+			bottomRow: [
+				"CHAPTERS 1 AND 2 / THESIS PRESENTATION",
+				"USEP, COLLEGE OF INFORMATION AND COMPUTING / DAVAO CITY",
+				"DELGADO · DELGADO · LABAY"
+			],
+			takeaway: "LISTENING ALONE IS NO LONGER ENOUGH."
+		}
+	},
+	{
+		id: "S02",
+		chapter: "ch1",
+		section: "THE SCALE",
+		headline: "THE UPLOADS NEVER STOP. LISTENING CAN'T KEEP UP.",
+		plain: "Tools like Suno and Udio make songs with vocals and lyrics from a short description.",
+		technical: "Suno and Udio create complete songs with vocals, lyrics, and instruments across many genres [6].",
+		takeaway: "People cannot hear the difference, and the volume is growing.",
+		stats: [
+			{
+				value: "97%",
+				description: "COULD NOT TELL HUMAN FROM FULLY AI MUSIC, BLIND TEST WITH THREE TRACKS, ABOUT 9,000 ADULTS IN EIGHT COUNTRIES",
+				ref: "[8]"
+			},
+			{
+				value: "about 90,000",
+				description: "FULLY AI TRACKS EACH DAY AT DEEZER, MORE THAN HALF OF DAILY UPLOADS AT THE JUNE 2026 PEAK",
+				ref: "[9]"
+			},
+			{
+				value: "24%",
+				description: "OF MUSIC CREATORS' REVENUE COULD BE AT RISK BY 2028",
+				ref: "[10]"
+			}
+		],
+		caption: "200+ ARTISTS SIGNED AN OPEN LETTER AGAINST THE PREDATORY USE OF AI [11]"
+	},
+	{
+		id: "S03",
+		chapter: "ch1",
+		section: "1.1 Background",
+		headline: "Every AI track competes for the same royalties",
+		plain: "Streaming income is shared. Each AI track that earns plays takes a share from a human artist.",
+		technical: "Each synthetic track competes for the same listener attention and royalty payments. More than 200 artists signed an open letter against the predatory use of AI [11].",
+		takeaway: "Without detection, fair pay is hard to protect.",
+		illustrationLabel: "Illustration"
+	},
+	{
+		id: "S04",
+		chapter: "ch1",
+		section: "CLOSER TO HOME",
+		headline: "THE SAME WORRY, CLOSER TO HOME.",
+		plain: "The government is drafting copyright rules for AI music, and OPM artists are speaking up.",
+		technical: "IPOPHL drafted guidelines under which works made wholly by AI would not qualify for copyright registration [20]. An AI artist covering Filipino songs appeared on the Spotify Philippines Daily Top Artists chart [21], [22]. Pablo of SB19 said using artists’ work and identity without consent is unethical and should be illegal [23].",
+		takeaway: "Local artists have little protection and no simple way to check a song.",
+		homeCards: [
+			{
+				index: "01",
+				title: "IPOPHL DRAFT RULES",
+				description: "WORKS MADE WHOLLY BY AI WOULD NOT QUALIFY FOR COPYRIGHT REGISTRATION",
+				refs: [20]
+			},
+			{
+				index: "02",
+				title: "AI ARTIST ON THE SPOTIFY PH CHART",
+				description: "AN AI ACT COVERING FILIPINO SONGS APPEARED ON THE DAILY TOP ARTISTS CHART",
+				refs: [21, 22]
+			},
+			{
+				index: "03",
+				title: "PABLO OF SB19",
+				description: "USING ARTISTS' WORK AND IDENTITY WITHOUT CONSENT IS UNETHICAL",
+				refs: [23]
+			}
+		],
+		note: "NO DAVAO-SPECIFIC SOURCE WAS FOUND. THIS STUDY USES NATIONAL AND INTERNATIONAL EVIDENCE."
+	},
+	{
+		id: "S05",
+		chapter: "ch1",
+		section: "1.1 Background",
+		headline: "Today's detectors break in five ways",
+		plain: "Each weakness lets an AI track slip past a detector undetected.",
+		technical: "Single-mix pipelines fail on pitch shifts, ignore vocal cues, blend audio without separation, struggle on unseen generators, and learn encoding shortcuts instead of music.",
+		takeaway: "High lab scores do not mean reliable detection.",
+		illustrationLabel: "Illustration of the degradation reported in [15], not measured data.",
+		failureCards: [
+			{
+				title: "Pitch shift",
+				description: "Single-mix detectors degrade substantially when pitch is slightly shifted",
+				refs: "[15]"
+			},
+			{
+				title: "Ignore the voice",
+				description: "Benchmarks treat multimodality as melody and lyrics only, and models like SpecTTTra do not explicitly use vocal cues such as breathing pauses and vibrato",
+				refs: "[16], [17]"
+			},
+			{
+				title: "Blended audio",
+				description: "Two-branch systems still use the whole mix without separating vocals and instruments",
+				refs: "[18]"
+			},
+			{
+				title: "Unseen generators",
+				description: "Models struggle on AI generators they did not see in training",
+				refs: "[19]"
+			},
+			{
+				title: "Shortcuts",
+				description: "When real and AI songs come from different sources, a detector can learn silence, bandwidth, or encoding instead of music",
+				refs: "[33], [52]"
+			}
+		]
+	},
+	{
+		id: "S06",
+		chapter: "ch1",
+		section: "THE METHOD AT A GLANCE",
+		headline: "SPLIT THE SONG. JUDGE EACH PART. SHOW DOUBT.",
+		plain: "Know-Ta splits a song into voice and instruments, checks each one, and tells you how sure it is.",
+		technical: "HTDemucs separates stems. An EfficientNet-B0 Audio Branch analyzes the instrumental. A Bidirectional LSTM Vocal Branch analyzes prosodic features. Attention fusion learns weights alpha and beta. Monte Carlo Dropout with Temperature Scaling gives a calibrated Bayesian Confidence Score.",
+		takeaway: "TWO KINDS OF EVIDENCE, ONE HONEST CONFIDENCE SCORE.",
+		hotspots: [
+			"DEMUCS SPLIT",
+			"AUDIO BRANCH",
+			"VOCAL BRANCH",
+			"ATTENTION FUSION",
+			"CONFIDENCE SCORE",
+			"CONFLICT FLAG"
+		],
+		hotspotDetails: [
+			{
+				name: "DEMUCS SPLIT",
+				line1: "HTDemucs separates the song into vocal and instrumental stems.",
+				line2: "Isolates vocal cues from accompaniment so each can be evaluated independently."
+			},
+			{
+				name: "AUDIO BRANCH",
+				line1: "An EfficientNet-B0 Audio Branch analyzes the instrumental track.",
+				line2: "Extracts spectral timbre and synthetic artifacts from the accompaniment."
+			},
+			{
+				name: "VOCAL BRANCH",
+				line1: "A Bidirectional LSTM Vocal Branch analyzes prosodic features.",
+				line2: "Tracks pitch contours, vibrato, and breathing dynamics in singing."
+			},
+			{
+				name: "ATTENTION FUSION",
+				line1: "Attention fusion learns weights alpha and beta to balance stems.",
+				line2: "Prioritizes whichever branch provides stronger, more reliable evidence."
+			},
+			{
+				name: "CONFIDENCE SCORE",
+				line1: "Monte Carlo Dropout with Temperature Scaling gives calibrated uncertainty.",
+				line2: "Runs 20 stochastic forward passes to quantify honest model doubt."
+			},
+			{
+				name: "CONFLICT FLAG",
+				line1: "Warns when the vocal and instrumental branches disagree.",
+				line2: "Flags hybrid tracks where synthetic vocals are placed over human stems."
+			}
+		],
+		tags: [
+			"AUDIO BRANCH / EFFICIENTNET-B0",
+			"VOCAL BRANCH / BI-LSTM",
+			"FUSION / ATTENTION",
+			"CONFIDENCE / MC DROPOUT"
+		]
+	},
+	{
+		id: "S07",
+		chapter: "ch1",
+		section: "1.2 Statement of the Problem, 1.3 Hypotheses",
+		headline: "Four questions, four testable predictions",
+		plain: "Each question has a rule set before any data is run.",
+		technical: "Pre-registered hypotheses with testable criteria for each research question.",
+		takeaway: "Every claim can be rejected, and we report it if it is.",
+		flipCards: [
+			{
+				question: "How accurate is Know-Ta on held-out songs and on generators not used in training?",
+				hypothesis: "Macro F1 of at least 0.80 on the internal test partition (a starting target), and a lower score on unseen Echoes generators, with a measurable drop."
+			},
+			{
+				question: "Do separation, a vocal branch, and attention actually help?",
+				hypothesis: "The full system beats the Full Mix Baseline, the Concatenation Variant, and Audio only. Each part is tested separately and may be rejected."
+			},
+			{
+				question: "Can users trust the confidence percentages?",
+				hypothesis: "Temperature Scaling lowers calibration error, and uncertainty is larger on wrong predictions."
+			},
+			{
+				question: "Does it warn when voice and instruments disagree?",
+				hypothesis: "The conflict flag fires more on mixed clips than on matching controls."
+			}
+		]
+	},
+	{
+		id: "S08",
+		chapter: "ch1",
+		section: "SCOPE",
+		headline: "WHAT WE COVER. WHAT WE DON'T.",
+		plain: "Clear limits make the results fair to read.",
+		technical: "Scope covers specific datasets, languages, and evaluation conditions only.",
+		takeaway: "CLEAR LIMITS MAKE THE RESULTS FAIR TO READ.",
+		covers: [
+			"English songs with singing",
+			"Human songs from FMA, AI songs from SONICS",
+			"Held-out test on Echoes",
+			"Full system, two simple variants, and an uncertainty score",
+			"A free web prototype"
+		],
+		doesNotCover: [
+			"Filipino or other Philippine languages",
+			"Instrumental-only songs",
+			"Legal proof or takedowns",
+			"Whether a song copies a specific artist",
+			"Commercial use"
+		]
+	},
+	{
+		id: "S09",
+		chapter: "ch2",
+		section: "RELATED LITERATURE",
+		headline: "WHAT THE LITERATURE SAYS.",
+		plain: "Each design choice traces back to a paper, with its limits noted.",
+		technical: "Literature review mapped to design decisions, with stated limitations.",
+		takeaway: "EVERY DESIGN CHOICE TRACES BACK TO EVIDENCE, WITH ITS LIMITS STATED.",
+		litNodes: [
+			{
+				topic: "GENERATION",
+				whatItSays: "AI music is more realistic and varied [3]-[7]",
+				whatItMeansForKnowTa: "The detector must handle realistic vocals and full mixes.",
+				sources: [
+					3,
+					4,
+					5,
+					6,
+					7
+				]
+			},
+			{
+				topic: "DETECTION",
+				whatItSays: "Detectors degrade under simple changes and on new generators [15], [19]",
+				whatItMeansForKnowTa: "We test on held-out generators and report the drop.",
+				sources: [15, 19]
+			},
+			{
+				topic: "SEPARATION",
+				whatItSays: "HTDemucs splits stems [24]; separate-then-detect can lose cues [29]",
+				whatItMeansForKnowTa: "We test separation with a Full Mix Baseline.",
+				sources: [24, 29]
+			},
+			{
+				topic: "SPECTRAL",
+				whatItSays: "EfficientNet-B0 is light; evidence is from speech [25], [38]",
+				whatItMeansForKnowTa: "Used as a light baseline, not claimed best.",
+				sources: [25, 38]
+			},
+			{
+				topic: "VOCAL",
+				whatItSays: "Bidirectional LSTMs fit timing cues [26], [27]; the breathing-pause idea is from speech [17]",
+				whatItMeansForKnowTa: "A hypothesis we test with pre-set rules.",
+				sources: [
+					17,
+					26,
+					27
+				]
+			},
+			{
+				topic: "ATTENTION",
+				whatItSays: "Attention weights branches by content [28]; theory supports multimodal gains under assumptions [42]",
+				whatItMeansForKnowTa: "Compared directly with plain concatenation.",
+				sources: [28, 42]
+			},
+			{
+				topic: "UNCERTAINTY",
+				whatItSays: "MC Dropout [30] and Temperature Scaling [31]",
+				whatItMeansForKnowTa: "Calibrated percentages, 20 passes, checked with calibration metrics.",
+				sources: [30, 31]
+			},
+			{
+				topic: "DATA",
+				whatItSays: "SONICS fake songs [32], FMA [49], Echoes [33]",
+				whatItMeansForKnowTa: "Legal, documented, and tested for shortcuts.",
+				sources: [
+					32,
+					33,
+					49
+				]
+			}
+		]
+	},
+	{
+		id: "S10",
+		chapter: "ch2",
+		section: "THE DATA",
+		headline: "TESTED ON GENERATORS IT HAS NEVER HEARD.",
+		plain: "AI songs from SONICS, human songs from FMA, and a separate locked test from Echoes.",
+		technical: "SONICS fake songs (Suno, Udio) are the AI class. FMA Creative Commons clips are the human class, with each track’s license logged. Echoes (4,468 AI tracks from 12 providers plus 300 human reference tracks) is used only for cross-platform testing and never for training, validation, or threshold tuning. Ten providers are unseen generators (3,868 AI tracks, about 93% of that set).",
+		takeaway: "CLEAN, REPRODUCIBLE, AND HONEST ABOUT LIMITS.",
+		pipelineChips: [
+			{ label: "30 S MIDDLE CLIP" },
+			{ label: "MP3 128 KBPS" },
+			{ label: "VOCAL AND ENGLISH FILTER" },
+			{ label: "GENRE MATCHED" },
+			{ label: "SHORTCUT CHECK" },
+			{ label: "22,050 HZ" },
+			{ label: "-23 LUFS" }
+		],
+		pipelineNote: "SONICS HUMAN SONGS ARE NOT USED: THEY ARE COPYRIGHTED YOUTUBE LINKS AND MANY NO LONGER WORK."
+	},
+	{
+		id: "S11",
+		chapter: "ch2",
+		section: "THEORETICAL FRAMEWORK",
+		headline: "THREE IDEAS BEHIND THE DESIGN.",
+		plain: "Bayesian doubt, attention weighting, and two views of the same song.",
+		technical: "Monte Carlo Dropout for uncertainty, attention fusion for dynamic branch weighting, and dual-branch multimodal evidence combination.",
+		takeaway: "DOUBT, WEIGHTING, AND TWO VIEWS MAKE THE VERDICT MORE HONEST.",
+		illustrationLabel: "ILLUSTRATION"
+	},
+	{
+		id: "S12",
+		chapter: "ch2",
+		section: "CONCEPTUAL FRAMEWORK",
+		headline: "INPUT. PROCESS. OUTPUT.",
+		plain: "One direction, from raw audio to a readable report.",
+		technical: "End-to-end pipeline from data ingestion through HTDemucs, dual-branch inference, attention fusion, and calibrated output generation.",
+		takeaway: "ONE DIRECTION, FROM RAW AUDIO TO A READABLE REPORT.",
+		stages: [
+			{
+				label: "Input",
+				items: ["SONICS fake + FMA human (train, validate, internal test)", "Echoes (cross-platform test)"]
+			},
+			{
+				label: "Process",
+				items: [
+					"HTDemucs",
+					"Audio Branch (EfficientNet-B0)",
+					"Vocal Branch (Bidirectional LSTM)",
+					"attention fusion",
+					"MC Dropout 20 passes + Temperature Scaling"
+				]
+			},
+			{
+				label: "Output",
+				items: [
+					"label",
+					"calibrated confidence",
+					"per-branch scores",
+					"conflict flag",
+					"report"
+				]
+			}
+		]
+	},
+	{
+		id: "S13",
+		chapter: "method",
+		section: "3.6, 3.8",
+		headline: "The Know-Ta report",
+		plain: "Drop a song into the printer. A report prints out.",
+		technical: "Demo output showing label, Bayesian confidence, per-branch scores, and conflict flag.",
+		takeaway: "A verdict, a confidence, and a warning when the evidence disagrees.",
+		illustrationLabel: "Demo output, not a result",
+		receiptFooter: "Estimate only. Not proof of authorship.",
+		receiptPresets: [
+			{
+				label: "Human-like song",
+				aiProbability: 8,
+				spreadPlusMinus: 3,
+				audioPct: 10,
+				vocalPct: 6,
+				conflict: null
+			},
+			{
+				label: "AI-like song",
+				aiProbability: 94,
+				spreadPlusMinus: 4,
+				audioPct: 96,
+				vocalPct: 91,
+				conflict: null
+			},
+			{
+				label: "Conflict song",
+				aiProbability: 62,
+				spreadPlusMinus: 15,
+				audioPct: 90,
+				vocalPct: 15,
+				conflict: "YES",
+				conflictGap: .75,
+				conflictThreshold: .3
+			}
+		]
+	}
+];
+export const qna = [
+	{
+		question: "Why FMA for human songs?",
+		answer: "SONICS human songs are copyrighted YouTube links and many are dead. FMA tracks carry Creative Commons licenses that we log per track."
+	},
+	{
+		question: "Why Echoes as the test?",
+		answer: "Its AI tracks are built to resemble its human references, so shortcuts are harder. It is never used for training or tuning."
+	},
+	{
+		question: "Why split with Demucs first?",
+		answer: "Each branch gets cleaner evidence. But separation can hide cues [29], so a Full Mix Baseline tests whether it helps."
+	},
+	{
+		question: "What if the Vocal Branch does not help?",
+		answer: "We set rules in advance (Vocal only Macro F1 at least 0.60 on validation, mean beta at least 0.10). If it fails, we report a negative result and try Mel frames once."
+	},
+	{
+		question: "Why EfficientNet-B0?",
+		answer: "It is light enough for a CPU web app. The evidence comes from speech, so we call it supporting, not conclusive."
+	},
+	{
+		question: "How trustworthy are the percentages?",
+		answer: "20 Monte Carlo passes plus Temperature Scaling, checked with calibration error, Brier score, and reliability diagrams. We expect worse calibration on Echoes."
+	},
+	{
+		question: "Is this proof a song is AI?",
+		answer: "No. It is a probabilistic estimate and not legal evidence."
+	},
+	{
+		question: "Why only English?",
+		answer: "The datasets are English. Filipino songs are future work."
+	},
+	{
+		question: "Why no Davao source?",
+		answer: "None was found, so we used national and international evidence. A local survey is a future step."
+	},
+	{
+		question: "Why could Echoes scores be lower?",
+		answer: "Echoes is built to be hard. Lower scores than the internal test are expected and are not by themselves a failure."
+	}
+];
+export const SCENE_COUNT = scenes.length;
+export const CHAPTER_LABELS = {
+	ch1: "Ch. 1",
+	ch2: "Ch. 2",
+	method: "Method"
+};
+
+//# sourceMappingURL=data:application/json;base64,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QUNWLFVBQVU7SUFDVixVQUFVO0lBQ1YsYUFBYTtJQUNiLG1CQUFtQjtHQUNyQjtFQUNGO0NBQ0Y7QUFDRjtBQUVBLE9BQU8sTUFBTSxNQUFpQjtDQUM1QjtFQUNFLFVBQVU7RUFDVixRQUNFO0NBQ0o7Q0FDQTtFQUNFLFVBQVU7RUFDVixRQUNFO0NBQ0o7Q0FDQTtFQUNFLFVBQVU7RUFDVixRQUNFO0NBQ0o7Q0FDQTtFQUNFLFVBQVU7RUFDVixRQUNFO0NBQ0o7Q0FDQTtFQUNFLFVBQVU7RUFDVixRQUNFO0NBQ0o7Q0FDQTtFQUNFLFVBQVU7RUFDVixRQUNFO0NBQ0o7Q0FDQTtFQUNFLFVBQVU7RUFDVixRQUFRO0NBQ1Y7Q0FDQTtFQUNFLFVBQVU7RUFDVixRQUFRO0NBQ1Y7Q0FDQTtFQUNFLFVBQVU7RUFDVixRQUNFO0NBQ0o7Q0FDQTtFQUNFLFVBQVU7RUFDVixRQUNFO0NBQ0o7QUFDRjtBQUVBLE9BQU8sTUFBTSxjQUFjLE9BQU87QUFFbEMsT0FBTyxNQUFNLGlCQUEwQztDQUNyRCxLQUFLO0NBQ0wsS0FBSztDQUNMLFFBQVE7QUFDViIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJzY2VuZXMudHMiXSwidmVyc2lvbiI6Mywic291cmNlc0NvbnRlbnQiOlsiLy8gc3JjL2RhdGEvc2NlbmVzLnRzXG4vLyBUeXBlZCBzY2VuZSBkYXRhIHBhcnNlZCBmcm9tIGNvbnRlbnQvc2NlbmVzLm1kLlxuLy8gRG8gbm90IGhhcmRjb2RlIGNvcHkgaW4gY29tcG9uZW50cyAtIGFsd2F5cyByZWFkIGZyb20gaGVyZS5cblxuZXhwb3J0IHR5cGUgQ2hhcHRlciA9ICdjaDEnIHwgJ2NoMicgfCAnbWV0aG9kJztcblxuZXhwb3J0IGludGVyZmFjZSBTdGF0IHtcbiAgdmFsdWU6IHN0cmluZztcbiAgZGVzY3JpcHRpb246IHN0cmluZztcbiAgcmVmOiBzdHJpbmc7XG59XG5cbmV4cG9ydCBpbnRlcmZhY2UgRmFpbHVyZUNhcmQge1xuICB0aXRsZTogc3RyaW5nO1xuICBkZXNjcmlwdGlvbjogc3RyaW5nO1xuICByZWZzOiBzdHJpbmc7XG59XG5cbmV4cG9ydCBpbnRlcmZhY2UgRmxpcENhcmQge1xuICBxdWVzdGlvbjogc3RyaW5nO1xuICBoeXBvdGhlc2lzOiBzdHJpbmc7XG59XG5cbmV4cG9ydCBpbnRlcmZhY2UgTGl0Tm9kZSB7XG4gIHRvcGljOiBzdHJpbmc7XG4gIHdoYXRJdFNheXM6IHN0cmluZztcbiAgd2hhdEl0TWVhbnNGb3JLbm93VGE6IHN0cmluZztcbiAgc291cmNlcz86IG51bWJlcltdO1xufVxuXG5leHBvcnQgaW50ZXJmYWNlIFBpcGVsaW5lQ2hpcCB7XG4gIGxhYmVsOiBzdHJpbmc7XG59XG5cbmV4cG9ydCBpbnRlcmZhY2UgUmVjZWlwdFByZXNldCB7XG4gIGxhYmVsOiBzdHJpbmc7XG4gIGFpUHJvYmFiaWxpdHk6IG51bWJlcjtcbiAgc3ByZWFkUGx1c01pbnVzOiBudW1iZXI7XG4gIGF1ZGlvUGN0OiBudW1iZXI7XG4gIHZvY2FsUGN0OiBudW1iZXI7XG4gIGNvbmZsaWN0OiBzdHJpbmcgfCBudWxsO1xuICBjb25mbGljdEdhcD86IG51bWJlcjtcbiAgY29uZmxpY3RUaHJlc2hvbGQ/OiBudW1iZXI7XG59XG5cbmV4cG9ydCBpbnRlcmZhY2UgUW5BSXRlbSB7XG4gIHF1ZXN0aW9uOiBzdHJpbmc7XG4gIGFuc3dlcjogc3RyaW5nO1xufVxuXG5leHBvcnQgaW50ZXJmYWNlIFN0YWdlIHtcbiAgbGFiZWw6IHN0cmluZztcbiAgaXRlbXM6IHN0cmluZ1tdO1xufVxuXG5leHBvcnQgaW50ZXJmYWNlIEhlcm9EYXRhIHtcbiAgbGFiZWw6IHN0cmluZztcbiAgaGVhZGxpbmVMaW5lMTogc3RyaW5nO1xuICBoZWFkbGluZUxpbmUyOiBzdHJpbmc7XG4gIHNjcmlwdFdvcmRzOiBzdHJpbmdbXTtcbiAgYm9keTogc3RyaW5nO1xuICBleHBsb3JlTGluazogc3RyaW5nO1xuICB0YWdzOiBzdHJpbmdbXTtcbiAgYm90dG9tUm93OiBbc3RyaW5nLCBzdHJpbmcsIHN0cmluZ107XG4gIHRha2Vhd2F5OiBzdHJpbmc7XG59XG5cbmV4cG9ydCBpbnRlcmZhY2UgSG9tZUNhcmQge1xuICBpbmRleDogc3RyaW5nO1xuICB0aXRsZTogc3RyaW5nO1xuICBkZXNjcmlwdGlvbjogc3RyaW5nO1xuICByZWZzOiBudW1iZXJbXTtcbn1cblxuZXhwb3J0IGludGVyZmFjZSBIb3RzcG90RGV0YWlsIHtcbiAgbmFtZTogc3RyaW5nO1xuICBsaW5lMTogc3RyaW5nO1xuICBsaW5lMjogc3RyaW5nO1xufVxuXG5leHBvcnQgaW50ZXJmYWNlIFNjZW5lRGF0YSB7XG4gIGlkOiBzdHJpbmc7XG4gIGNoYXB0ZXI6IENoYXB0ZXI7XG4gIHNlY3Rpb246IHN0cmluZztcbiAgaGVhZGxpbmU6IHN0cmluZztcbiAgcGxhaW46IHN0cmluZztcbiAgdGVjaG5pY2FsPzogc3RyaW5nO1xuICB0YWtlYXdheTogc3RyaW5nO1xuICBpbGx1c3RyYXRpb25MYWJlbD86IHN0cmluZztcbiAgYXV0aG9ycz86IHN0cmluZztcbiAgaGVybz86IEhlcm9EYXRhO1xuICBjYXB0aW9uPzogc3RyaW5nO1xuICBub3RlPzogc3RyaW5nO1xuICBob21lQ2FyZHM/OiBIb21lQ2FyZFtdO1xuICBzdGF0cz86IFN0YXRbXTtcbiAgZmFpbHVyZUNhcmRzPzogRmFpbHVyZUNhcmRbXTtcbiAgZmxpcENhcmRzPzogRmxpcENhcmRbXTtcbiAgY292ZXJzPzogc3RyaW5nW107XG4gIGRvZXNOb3RDb3Zlcj86IHN0cmluZ1tdO1xuICBsaXROb2Rlcz86IExpdE5vZGVbXTtcbiAgcGlwZWxpbmVDaGlwcz86IFBpcGVsaW5lQ2hpcFtdO1xuICBwaXBlbGluZU5vdGU/OiBzdHJpbmc7XG4gIHN0YWdlcz86IFN0YWdlW107XG4gIHJlY2VpcHRQcmVzZXRzPzogUmVjZWlwdFByZXNldFtdO1xuICByZWNlaXB0Rm9vdGVyPzogc3RyaW5nO1xuICBob3RzcG90cz86IHN0cmluZ1tdO1xuICBob3RzcG90RGV0YWlscz86IEhvdHNwb3REZXRhaWxbXTtcbiAgdGFncz86IHN0cmluZ1tdO1xufVxuXG5leHBvcnQgY29uc3Qgc2NlbmVzOiBTY2VuZURhdGFbXSA9IFtcbiAge1xuICAgIGlkOiAnUzAxJyxcbiAgICBjaGFwdGVyOiAnY2gxJyxcbiAgICBzZWN0aW9uOiAnVGl0bGUnLFxuICAgIGhlYWRsaW5lOiAnQ2FuIHlvdSB0ZWxsIHdoaWNoIHNvbmcgaXMgaHVtYW4/JyxcbiAgICBwbGFpbjogJ1R3byB3YXZlZm9ybXMgbG9vayB0aGUgc2FtZS4gT25lIHNvbmcgaXMgaHVtYW4uIE9uZSBpcyBBSS4nLFxuICAgIHRlY2huaWNhbDpcbiAgICAgICdLbm93LVRhITogQSBUd28tQnJhbmNoIERlZXAgTGVhcm5pbmcgRnJhbWV3b3JrIGZvciBBSS1HZW5lcmF0ZWQgTXVzaWMgRGV0ZWN0aW9uIHdpdGggQ3Jvc3MtUGxhdGZvcm0gRXZhbHVhdGlvbiBhbmQgQmF5ZXNpYW4gVW5jZXJ0YWludHkgRXN0aW1hdGlvbi4nLFxuICAgIHRha2Vhd2F5OiAnTElTVEVOSU5HIEFMT05FIElTIE5PIExPTkdFUiBFTk9VR0guJyxcbiAgICBhdXRob3JzOlxuICAgICAgJ0RlbGdhZG8sIEtlbnQgUGF1bG8gUi47IERlbGdhZG8sIEVhcmwgSm9zaCBCLjsgTGFiYXksIEpvaG4gUmVuYW4gTi4gfCBDb2xsZWdlIG9mIEluZm9ybWF0aW9uIGFuZCBDb21wdXRpbmcsIFVuaXZlcnNpdHkgb2YgU291dGhlYXN0ZXJuIFBoaWxpcHBpbmVzLCBEYXZhbyBDaXR5JyxcbiAgICBoZXJvOiB7XG4gICAgICBsYWJlbDogJ0FJLUdFTkVSQVRFRCBNVVNJQyBERVRFQ1RJT04nLFxuICAgICAgaGVhZGxpbmVMaW5lMTogJ0tOT1cgV0hBVCcsXG4gICAgICBoZWFkbGluZUxpbmUyOiBcIllPVSdSRVwiLFxuICAgICAgc2NyaXB0V29yZHM6IFsnaGVhcmluZycsICdzdHJlYW1pbmcnLCAncGF5aW5nIGZvcicsICd0cnVzdGluZyddLFxuICAgICAgYm9keTogJ0EgdHdvLWJyYW5jaCBkZWVwIGxlYXJuaW5nIHN5c3RlbSB0aGF0IHNwbGl0cyBhIHNvbmcgaW50byB2b2ljZSBhbmQgaW5zdHJ1bWVudHMsIGp1ZGdlcyBlYWNoIHBhcnQsIGFuZCBzaG93cyBob3cgc3VyZSBpdCBpcy4nLFxuICAgICAgZXhwbG9yZUxpbms6ICdFWFBMT1JFIFRIRSBTVFVEWSDihpcnLFxuICAgICAgdGFnczogW1xuICAgICAgICAnQVVESU8gQlJBTkNIIC8gRUZGSUNJRU5UTkVULUIwJyxcbiAgICAgICAgJ1ZPQ0FMIEJSQU5DSCAvIEJJLUxTVE0nLFxuICAgICAgICAnRlVTSU9OIC8gQVRURU5USU9OJyxcbiAgICAgICAgJ0NPTkZJREVOQ0UgLyBNQyBEUk9QT1VUJyxcbiAgICAgIF0sXG4gICAgICBib3R0b21Sb3c6IFtcbiAgICAgICAgJ0NIQVBURVJTIDEgQU5EIDIgLyBUSEVTSVMgUFJFU0VOVEFUSU9OJyxcbiAgICAgICAgJ1VTRVAsIENPTExFR0UgT0YgSU5GT1JNQVRJT04gQU5EIENPTVBVVElORyAvIERBVkFPIENJVFknLFxuICAgICAgICAnREVMR0FETyDCtyBERUxHQURPIMK3IExBQkFZJyxcbiAgICAgIF0sXG4gICAgICB0YWtlYXdheTogJ0xJU1RFTklORyBBTE9ORSBJUyBOTyBMT05HRVIgRU5PVUdILicsXG4gICAgfSxcbiAgfSxcbiAge1xuICAgIGlkOiAnUzAyJyxcbiAgICBjaGFwdGVyOiAnY2gxJyxcbiAgICBzZWN0aW9uOiAnVEhFIFNDQUxFJyxcbiAgICBoZWFkbGluZTogXCJUSEUgVVBMT0FEUyBORVZFUiBTVE9QLiBMSVNURU5JTkcgQ0FOJ1QgS0VFUCBVUC5cIixcbiAgICBwbGFpbjpcbiAgICAgICdUb29scyBsaWtlIFN1bm8gYW5kIFVkaW8gbWFrZSBzb25ncyB3aXRoIHZvY2FscyBhbmQgbHlyaWNzIGZyb20gYSBzaG9ydCBkZXNjcmlwdGlvbi4nLFxuICAgIHRlY2huaWNhbDpcbiAgICAgICdTdW5vIGFuZCBVZGlvIGNyZWF0ZSBjb21wbGV0ZSBzb25ncyB3aXRoIHZvY2FscywgbHlyaWNzLCBhbmQgaW5zdHJ1bWVudHMgYWNyb3NzIG1hbnkgZ2VucmVzIFs2XS4nLFxuICAgIHRha2Vhd2F5OiAnUGVvcGxlIGNhbm5vdCBoZWFyIHRoZSBkaWZmZXJlbmNlLCBhbmQgdGhlIHZvbHVtZSBpcyBncm93aW5nLicsXG4gICAgc3RhdHM6IFtcbiAgICAgIHtcbiAgICAgICAgdmFsdWU6ICc5NyUnLFxuICAgICAgICBkZXNjcmlwdGlvbjpcbiAgICAgICAgICAnQ09VTEQgTk9UIFRFTEwgSFVNQU4gRlJPTSBGVUxMWSBBSSBNVVNJQywgQkxJTkQgVEVTVCBXSVRIIFRIUkVFIFRSQUNLUywgQUJPVVQgOSwwMDAgQURVTFRTIElOIEVJR0hUIENPVU5UUklFUycsXG4gICAgICAgIHJlZjogJ1s4XScsXG4gICAgICB9LFxuICAgICAge1xuICAgICAgICB2YWx1ZTogJ2Fib3V0IDkwLDAwMCcsXG4gICAgICAgIGRlc2NyaXB0aW9uOlxuICAgICAgICAgICdGVUxMWSBBSSBUUkFDS1MgRUFDSCBEQVkgQVQgREVFWkVSLCBNT1JFIFRIQU4gSEFMRiBPRiBEQUlMWSBVUExPQURTIEFUIFRIRSBKVU5FIDIwMjYgUEVBSycsXG4gICAgICAgIHJlZjogJ1s5XScsXG4gICAgICB9LFxuICAgICAge1xuICAgICAgICB2YWx1ZTogJzI0JScsXG4gICAgICAgIGRlc2NyaXB0aW9uOlxuICAgICAgICAgIFwiT0YgTVVTSUMgQ1JFQVRPUlMnIFJFVkVOVUUgQ09VTEQgQkUgQVQgUklTSyBCWSAyMDI4XCIsXG4gICAgICAgIHJlZjogJ1sxMF0nLFxuICAgICAgfSxcbiAgICBdLFxuICAgIGNhcHRpb246ICcyMDArIEFSVElTVFMgU0lHTkVEIEFOIE9QRU4gTEVUVEVSIEFHQUlOU1QgVEhFIFBSRURBVE9SWSBVU0UgT0YgQUkgWzExXScsXG4gIH0sXG4gIHtcbiAgICBpZDogJ1MwMycsXG4gICAgY2hhcHRlcjogJ2NoMScsXG4gICAgc2VjdGlvbjogJzEuMSBCYWNrZ3JvdW5kJyxcbiAgICBoZWFkbGluZTogJ0V2ZXJ5IEFJIHRyYWNrIGNvbXBldGVzIGZvciB0aGUgc2FtZSByb3lhbHRpZXMnLFxuICAgIHBsYWluOlxuICAgICAgJ1N0cmVhbWluZyBpbmNvbWUgaXMgc2hhcmVkLiBFYWNoIEFJIHRyYWNrIHRoYXQgZWFybnMgcGxheXMgdGFrZXMgYSBzaGFyZSBmcm9tIGEgaHVtYW4gYXJ0aXN0LicsXG4gICAgdGVjaG5pY2FsOlxuICAgICAgJ0VhY2ggc3ludGhldGljIHRyYWNrIGNvbXBldGVzIGZvciB0aGUgc2FtZSBsaXN0ZW5lciBhdHRlbnRpb24gYW5kIHJveWFsdHkgcGF5bWVudHMuIE1vcmUgdGhhbiAyMDAgYXJ0aXN0cyBzaWduZWQgYW4gb3BlbiBsZXR0ZXIgYWdhaW5zdCB0aGUgcHJlZGF0b3J5IHVzZSBvZiBBSSBbMTFdLicsXG4gICAgdGFrZWF3YXk6ICdXaXRob3V0IGRldGVjdGlvbiwgZmFpciBwYXkgaXMgaGFyZCB0byBwcm90ZWN0LicsXG4gICAgaWxsdXN0cmF0aW9uTGFiZWw6ICdJbGx1c3RyYXRpb24nLFxuICB9LFxuICB7XG4gICAgaWQ6ICdTMDQnLFxuICAgIGNoYXB0ZXI6ICdjaDEnLFxuICAgIHNlY3Rpb246ICdDTE9TRVIgVE8gSE9NRScsXG4gICAgaGVhZGxpbmU6ICdUSEUgU0FNRSBXT1JSWSwgQ0xPU0VSIFRPIEhPTUUuJyxcbiAgICBwbGFpbjpcbiAgICAgICdUaGUgZ292ZXJubWVudCBpcyBkcmFmdGluZyBjb3B5cmlnaHQgcnVsZXMgZm9yIEFJIG11c2ljLCBhbmQgT1BNIGFydGlzdHMgYXJlIHNwZWFraW5nIHVwLicsXG4gICAgdGVjaG5pY2FsOlxuICAgICAgJ0lQT1BITCBkcmFmdGVkIGd1aWRlbGluZXMgdW5kZXIgd2hpY2ggd29ya3MgbWFkZSB3aG9sbHkgYnkgQUkgd291bGQgbm90IHF1YWxpZnkgZm9yIGNvcHlyaWdodCByZWdpc3RyYXRpb24gWzIwXS4gQW4gQUkgYXJ0aXN0IGNvdmVyaW5nIEZpbGlwaW5vIHNvbmdzIGFwcGVhcmVkIG9uIHRoZSBTcG90aWZ5IFBoaWxpcHBpbmVzIERhaWx5IFRvcCBBcnRpc3RzIGNoYXJ0IFsyMV0sIFsyMl0uIFBhYmxvIG9mIFNCMTkgc2FpZCB1c2luZyBhcnRpc3Rz4oCZIHdvcmsgYW5kIGlkZW50aXR5IHdpdGhvdXQgY29uc2VudCBpcyB1bmV0aGljYWwgYW5kIHNob3VsZCBiZSBpbGxlZ2FsIFsyM10uJyxcbiAgICB0YWtlYXdheTogJ0xvY2FsIGFydGlzdHMgaGF2ZSBsaXR0bGUgcHJvdGVjdGlvbiBhbmQgbm8gc2ltcGxlIHdheSB0byBjaGVjayBhIHNvbmcuJyxcbiAgICBob21lQ2FyZHM6IFtcbiAgICAgIHtcbiAgICAgICAgaW5kZXg6ICcwMScsXG4gICAgICAgIHRpdGxlOiAnSVBPUEhMIERSQUZUIFJVTEVTJyxcbiAgICAgICAgZGVzY3JpcHRpb246ICdXT1JLUyBNQURFIFdIT0xMWSBCWSBBSSBXT1VMRCBOT1QgUVVBTElGWSBGT1IgQ09QWVJJR0hUIFJFR0lTVFJBVElPTicsXG4gICAgICAgIHJlZnM6IFsyMF0sXG4gICAgICB9LFxuICAgICAge1xuICAgICAgICBpbmRleDogJzAyJyxcbiAgICAgICAgdGl0bGU6ICdBSSBBUlRJU1QgT04gVEhFIFNQT1RJRlkgUEggQ0hBUlQnLFxuICAgICAgICBkZXNjcmlwdGlvbjogJ0FOIEFJIEFDVCBDT1ZFUklORyBGSUxJUElOTyBTT05HUyBBUFBFQVJFRCBPTiBUSEUgREFJTFkgVE9QIEFSVElTVFMgQ0hBUlQnLFxuICAgICAgICByZWZzOiBbMjEsIDIyXSxcbiAgICAgIH0sXG4gICAgICB7XG4gICAgICAgIGluZGV4OiAnMDMnLFxuICAgICAgICB0aXRsZTogJ1BBQkxPIE9GIFNCMTknLFxuICAgICAgICBkZXNjcmlwdGlvbjogXCJVU0lORyBBUlRJU1RTJyBXT1JLIEFORCBJREVOVElUWSBXSVRIT1VUIENPTlNFTlQgSVMgVU5FVEhJQ0FMXCIsXG4gICAgICAgIHJlZnM6IFsyM10sXG4gICAgICB9LFxuICAgIF0sXG4gICAgbm90ZTogJ05PIERBVkFPLVNQRUNJRklDIFNPVVJDRSBXQVMgRk9VTkQuIFRISVMgU1RVRFkgVVNFUyBOQVRJT05BTCBBTkQgSU5URVJOQVRJT05BTCBFVklERU5DRS4nLFxuICB9LFxuICB7XG4gICAgaWQ6ICdTMDUnLFxuICAgIGNoYXB0ZXI6ICdjaDEnLFxuICAgIHNlY3Rpb246ICcxLjEgQmFja2dyb3VuZCcsXG4gICAgaGVhZGxpbmU6IFwiVG9kYXkncyBkZXRlY3RvcnMgYnJlYWsgaW4gZml2ZSB3YXlzXCIsXG4gICAgcGxhaW46XG4gICAgICAnRWFjaCB3ZWFrbmVzcyBsZXRzIGFuIEFJIHRyYWNrIHNsaXAgcGFzdCBhIGRldGVjdG9yIHVuZGV0ZWN0ZWQuJyxcbiAgICB0ZWNobmljYWw6XG4gICAgICAnU2luZ2xlLW1peCBwaXBlbGluZXMgZmFpbCBvbiBwaXRjaCBzaGlmdHMsIGlnbm9yZSB2b2NhbCBjdWVzLCBibGVuZCBhdWRpbyB3aXRob3V0IHNlcGFyYXRpb24sIHN0cnVnZ2xlIG9uIHVuc2VlbiBnZW5lcmF0b3JzLCBhbmQgbGVhcm4gZW5jb2Rpbmcgc2hvcnRjdXRzIGluc3RlYWQgb2YgbXVzaWMuJyxcbiAgICB0YWtlYXdheTogJ0hpZ2ggbGFiIHNjb3JlcyBkbyBub3QgbWVhbiByZWxpYWJsZSBkZXRlY3Rpb24uJyxcbiAgICBpbGx1c3RyYXRpb25MYWJlbDogJ0lsbHVzdHJhdGlvbiBvZiB0aGUgZGVncmFkYXRpb24gcmVwb3J0ZWQgaW4gWzE1XSwgbm90IG1lYXN1cmVkIGRhdGEuJyxcbiAgICBmYWlsdXJlQ2FyZHM6IFtcbiAgICAgIHtcbiAgICAgICAgdGl0bGU6ICdQaXRjaCBzaGlmdCcsXG4gICAgICAgIGRlc2NyaXB0aW9uOlxuICAgICAgICAgICdTaW5nbGUtbWl4IGRldGVjdG9ycyBkZWdyYWRlIHN1YnN0YW50aWFsbHkgd2hlbiBwaXRjaCBpcyBzbGlnaHRseSBzaGlmdGVkJyxcbiAgICAgICAgcmVmczogJ1sxNV0nLFxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgdGl0bGU6ICdJZ25vcmUgdGhlIHZvaWNlJyxcbiAgICAgICAgZGVzY3JpcHRpb246XG4gICAgICAgICAgJ0JlbmNobWFya3MgdHJlYXQgbXVsdGltb2RhbGl0eSBhcyBtZWxvZHkgYW5kIGx5cmljcyBvbmx5LCBhbmQgbW9kZWxzIGxpa2UgU3BlY1RUVHJhIGRvIG5vdCBleHBsaWNpdGx5IHVzZSB2b2NhbCBjdWVzIHN1Y2ggYXMgYnJlYXRoaW5nIHBhdXNlcyBhbmQgdmlicmF0bycsXG4gICAgICAgIHJlZnM6ICdbMTZdLCBbMTddJyxcbiAgICAgIH0sXG4gICAgICB7XG4gICAgICAgIHRpdGxlOiAnQmxlbmRlZCBhdWRpbycsXG4gICAgICAgIGRlc2NyaXB0aW9uOlxuICAgICAgICAgICdUd28tYnJhbmNoIHN5c3RlbXMgc3RpbGwgdXNlIHRoZSB3aG9sZSBtaXggd2l0aG91dCBzZXBhcmF0aW5nIHZvY2FscyBhbmQgaW5zdHJ1bWVudHMnLFxuICAgICAgICByZWZzOiAnWzE4XScsXG4gICAgICB9LFxuICAgICAge1xuICAgICAgICB0aXRsZTogJ1Vuc2VlbiBnZW5lcmF0b3JzJyxcbiAgICAgICAgZGVzY3JpcHRpb246ICdNb2RlbHMgc3RydWdnbGUgb24gQUkgZ2VuZXJhdG9ycyB0aGV5IGRpZCBub3Qgc2VlIGluIHRyYWluaW5nJyxcbiAgICAgICAgcmVmczogJ1sxOV0nLFxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgdGl0bGU6ICdTaG9ydGN1dHMnLFxuICAgICAgICBkZXNjcmlwdGlvbjpcbiAgICAgICAgICAnV2hlbiByZWFsIGFuZCBBSSBzb25ncyBjb21lIGZyb20gZGlmZmVyZW50IHNvdXJjZXMsIGEgZGV0ZWN0b3IgY2FuIGxlYXJuIHNpbGVuY2UsIGJhbmR3aWR0aCwgb3IgZW5jb2RpbmcgaW5zdGVhZCBvZiBtdXNpYycsXG4gICAgICAgIHJlZnM6ICdbMzNdLCBbNTJdJyxcbiAgICAgIH0sXG4gICAgXSxcbiAgfSxcbiAge1xuICAgIGlkOiAnUzA2JyxcbiAgICBjaGFwdGVyOiAnY2gxJyxcbiAgICBzZWN0aW9uOiAnVEhFIE1FVEhPRCBBVCBBIEdMQU5DRScsXG4gICAgaGVhZGxpbmU6ICdTUExJVCBUSEUgU09ORy4gSlVER0UgRUFDSCBQQVJULiBTSE9XIERPVUJULicsXG4gICAgcGxhaW46XG4gICAgICAnS25vdy1UYSBzcGxpdHMgYSBzb25nIGludG8gdm9pY2UgYW5kIGluc3RydW1lbnRzLCBjaGVja3MgZWFjaCBvbmUsIGFuZCB0ZWxscyB5b3UgaG93IHN1cmUgaXQgaXMuJyxcbiAgICB0ZWNobmljYWw6XG4gICAgICAnSFREZW11Y3Mgc2VwYXJhdGVzIHN0ZW1zLiBBbiBFZmZpY2llbnROZXQtQjAgQXVkaW8gQnJhbmNoIGFuYWx5emVzIHRoZSBpbnN0cnVtZW50YWwuIEEgQmlkaXJlY3Rpb25hbCBMU1RNIFZvY2FsIEJyYW5jaCBhbmFseXplcyBwcm9zb2RpYyBmZWF0dXJlcy4gQXR0ZW50aW9uIGZ1c2lvbiBsZWFybnMgd2VpZ2h0cyBhbHBoYSBhbmQgYmV0YS4gTW9udGUgQ2FybG8gRHJvcG91dCB3aXRoIFRlbXBlcmF0dXJlIFNjYWxpbmcgZ2l2ZXMgYSBjYWxpYnJhdGVkIEJheWVzaWFuIENvbmZpZGVuY2UgU2NvcmUuJyxcbiAgICB0YWtlYXdheTogJ1RXTyBLSU5EUyBPRiBFVklERU5DRSwgT05FIEhPTkVTVCBDT05GSURFTkNFIFNDT1JFLicsXG4gICAgaG90c3BvdHM6IFtcbiAgICAgICdERU1VQ1MgU1BMSVQnLFxuICAgICAgJ0FVRElPIEJSQU5DSCcsXG4gICAgICAnVk9DQUwgQlJBTkNIJyxcbiAgICAgICdBVFRFTlRJT04gRlVTSU9OJyxcbiAgICAgICdDT05GSURFTkNFIFNDT1JFJyxcbiAgICAgICdDT05GTElDVCBGTEFHJyxcbiAgICBdLFxuICAgIGhvdHNwb3REZXRhaWxzOiBbXG4gICAgICB7XG4gICAgICAgIG5hbWU6ICdERU1VQ1MgU1BMSVQnLFxuICAgICAgICBsaW5lMTogJ0hURGVtdWNzIHNlcGFyYXRlcyB0aGUgc29uZyBpbnRvIHZvY2FsIGFuZCBpbnN0cnVtZW50YWwgc3RlbXMuJyxcbiAgICAgICAgbGluZTI6ICdJc29sYXRlcyB2b2NhbCBjdWVzIGZyb20gYWNjb21wYW5pbWVudCBzbyBlYWNoIGNhbiBiZSBldmFsdWF0ZWQgaW5kZXBlbmRlbnRseS4nLFxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgbmFtZTogJ0FVRElPIEJSQU5DSCcsXG4gICAgICAgIGxpbmUxOiAnQW4gRWZmaWNpZW50TmV0LUIwIEF1ZGlvIEJyYW5jaCBhbmFseXplcyB0aGUgaW5zdHJ1bWVudGFsIHRyYWNrLicsXG4gICAgICAgIGxpbmUyOiAnRXh0cmFjdHMgc3BlY3RyYWwgdGltYnJlIGFuZCBzeW50aGV0aWMgYXJ0aWZhY3RzIGZyb20gdGhlIGFjY29tcGFuaW1lbnQuJyxcbiAgICAgIH0sXG4gICAgICB7XG4gICAgICAgIG5hbWU6ICdWT0NBTCBCUkFOQ0gnLFxuICAgICAgICBsaW5lMTogJ0EgQmlkaXJlY3Rpb25hbCBMU1RNIFZvY2FsIEJyYW5jaCBhbmFseXplcyBwcm9zb2RpYyBmZWF0dXJlcy4nLFxuICAgICAgICBsaW5lMjogJ1RyYWNrcyBwaXRjaCBjb250b3VycywgdmlicmF0bywgYW5kIGJyZWF0aGluZyBkeW5hbWljcyBpbiBzaW5naW5nLicsXG4gICAgICB9LFxuICAgICAge1xuICAgICAgICBuYW1lOiAnQVRURU5USU9OIEZVU0lPTicsXG4gICAgICAgIGxpbmUxOiAnQXR0ZW50aW9uIGZ1c2lvbiBsZWFybnMgd2VpZ2h0cyBhbHBoYSBhbmQgYmV0YSB0byBiYWxhbmNlIHN0ZW1zLicsXG4gICAgICAgIGxpbmUyOiAnUHJpb3JpdGl6ZXMgd2hpY2hldmVyIGJyYW5jaCBwcm92aWRlcyBzdHJvbmdlciwgbW9yZSByZWxpYWJsZSBldmlkZW5jZS4nLFxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgbmFtZTogJ0NPTkZJREVOQ0UgU0NPUkUnLFxuICAgICAgICBsaW5lMTogJ01vbnRlIENhcmxvIERyb3BvdXQgd2l0aCBUZW1wZXJhdHVyZSBTY2FsaW5nIGdpdmVzIGNhbGlicmF0ZWQgdW5jZXJ0YWludHkuJyxcbiAgICAgICAgbGluZTI6ICdSdW5zIDIwIHN0b2NoYXN0aWMgZm9yd2FyZCBwYXNzZXMgdG8gcXVhbnRpZnkgaG9uZXN0IG1vZGVsIGRvdWJ0LicsXG4gICAgICB9LFxuICAgICAge1xuICAgICAgICBuYW1lOiAnQ09ORkxJQ1QgRkxBRycsXG4gICAgICAgIGxpbmUxOiAnV2FybnMgd2hlbiB0aGUgdm9jYWwgYW5kIGluc3RydW1lbnRhbCBicmFuY2hlcyBkaXNhZ3JlZS4nLFxuICAgICAgICBsaW5lMjogJ0ZsYWdzIGh5YnJpZCB0cmFja3Mgd2hlcmUgc3ludGhldGljIHZvY2FscyBhcmUgcGxhY2VkIG92ZXIgaHVtYW4gc3RlbXMuJyxcbiAgICAgIH0sXG4gICAgXSxcbiAgICB0YWdzOiBbXG4gICAgICAnQVVESU8gQlJBTkNIIC8gRUZGSUNJRU5UTkVULUIwJyxcbiAgICAgICdWT0NBTCBCUkFOQ0ggLyBCSS1MU1RNJyxcbiAgICAgICdGVVNJT04gLyBBVFRFTlRJT04nLFxuICAgICAgJ0NPTkZJREVOQ0UgLyBNQyBEUk9QT1VUJyxcbiAgICBdLFxuICB9LFxuICB7XG4gICAgaWQ6ICdTMDcnLFxuICAgIGNoYXB0ZXI6ICdjaDEnLFxuICAgIHNlY3Rpb246ICcxLjIgU3RhdGVtZW50IG9mIHRoZSBQcm9ibGVtLCAxLjMgSHlwb3RoZXNlcycsXG4gICAgaGVhZGxpbmU6ICdGb3VyIHF1ZXN0aW9ucywgZm91ciB0ZXN0YWJsZSBwcmVkaWN0aW9ucycsXG4gICAgcGxhaW46ICdFYWNoIHF1ZXN0aW9uIGhhcyBhIHJ1bGUgc2V0IGJlZm9yZSBhbnkgZGF0YSBpcyBydW4uJyxcbiAgICB0ZWNobmljYWw6ICdQcmUtcmVnaXN0ZXJlZCBoeXBvdGhlc2VzIHdpdGggdGVzdGFibGUgY3JpdGVyaWEgZm9yIGVhY2ggcmVzZWFyY2ggcXVlc3Rpb24uJyxcbiAgICB0YWtlYXdheTogJ0V2ZXJ5IGNsYWltIGNhbiBiZSByZWplY3RlZCwgYW5kIHdlIHJlcG9ydCBpdCBpZiBpdCBpcy4nLFxuICAgIGZsaXBDYXJkczogW1xuICAgICAge1xuICAgICAgICBxdWVzdGlvbjpcbiAgICAgICAgICAnSG93IGFjY3VyYXRlIGlzIEtub3ctVGEgb24gaGVsZC1vdXQgc29uZ3MgYW5kIG9uIGdlbmVyYXRvcnMgbm90IHVzZWQgaW4gdHJhaW5pbmc/JyxcbiAgICAgICAgaHlwb3RoZXNpczpcbiAgICAgICAgICAnTWFjcm8gRjEgb2YgYXQgbGVhc3QgMC44MCBvbiB0aGUgaW50ZXJuYWwgdGVzdCBwYXJ0aXRpb24gKGEgc3RhcnRpbmcgdGFyZ2V0KSwgYW5kIGEgbG93ZXIgc2NvcmUgb24gdW5zZWVuIEVjaG9lcyBnZW5lcmF0b3JzLCB3aXRoIGEgbWVhc3VyYWJsZSBkcm9wLicsXG4gICAgICB9LFxuICAgICAge1xuICAgICAgICBxdWVzdGlvbjogJ0RvIHNlcGFyYXRpb24sIGEgdm9jYWwgYnJhbmNoLCBhbmQgYXR0ZW50aW9uIGFjdHVhbGx5IGhlbHA/JyxcbiAgICAgICAgaHlwb3RoZXNpczpcbiAgICAgICAgICAnVGhlIGZ1bGwgc3lzdGVtIGJlYXRzIHRoZSBGdWxsIE1peCBCYXNlbGluZSwgdGhlIENvbmNhdGVuYXRpb24gVmFyaWFudCwgYW5kIEF1ZGlvIG9ubHkuIEVhY2ggcGFydCBpcyB0ZXN0ZWQgc2VwYXJhdGVseSBhbmQgbWF5IGJlIHJlamVjdGVkLicsXG4gICAgICB9LFxuICAgICAge1xuICAgICAgICBxdWVzdGlvbjogJ0NhbiB1c2VycyB0cnVzdCB0aGUgY29uZmlkZW5jZSBwZXJjZW50YWdlcz8nLFxuICAgICAgICBoeXBvdGhlc2lzOlxuICAgICAgICAgICdUZW1wZXJhdHVyZSBTY2FsaW5nIGxvd2VycyBjYWxpYnJhdGlvbiBlcnJvciwgYW5kIHVuY2VydGFpbnR5IGlzIGxhcmdlciBvbiB3cm9uZyBwcmVkaWN0aW9ucy4nLFxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgcXVlc3Rpb246ICdEb2VzIGl0IHdhcm4gd2hlbiB2b2ljZSBhbmQgaW5zdHJ1bWVudHMgZGlzYWdyZWU/JyxcbiAgICAgICAgaHlwb3RoZXNpczpcbiAgICAgICAgICAnVGhlIGNvbmZsaWN0IGZsYWcgZmlyZXMgbW9yZSBvbiBtaXhlZCBjbGlwcyB0aGFuIG9uIG1hdGNoaW5nIGNvbnRyb2xzLicsXG4gICAgICB9LFxuICAgIF0sXG4gIH0sXG4gIHtcbiAgICBpZDogJ1MwOCcsXG4gICAgY2hhcHRlcjogJ2NoMScsXG4gICAgc2VjdGlvbjogJ1NDT1BFJyxcbiAgICBoZWFkbGluZTogXCJXSEFUIFdFIENPVkVSLiBXSEFUIFdFIERPTidULlwiLFxuICAgIHBsYWluOiAnQ2xlYXIgbGltaXRzIG1ha2UgdGhlIHJlc3VsdHMgZmFpciB0byByZWFkLicsXG4gICAgdGVjaG5pY2FsOiAnU2NvcGUgY292ZXJzIHNwZWNpZmljIGRhdGFzZXRzLCBsYW5ndWFnZXMsIGFuZCBldmFsdWF0aW9uIGNvbmRpdGlvbnMgb25seS4nLFxuICAgIHRha2Vhd2F5OiAnQ0xFQVIgTElNSVRTIE1BS0UgVEhFIFJFU1VMVFMgRkFJUiBUTyBSRUFELicsXG4gICAgY292ZXJzOiBbXG4gICAgICAnRW5nbGlzaCBzb25ncyB3aXRoIHNpbmdpbmcnLFxuICAgICAgJ0h1bWFuIHNvbmdzIGZyb20gRk1BLCBBSSBzb25ncyBmcm9tIFNPTklDUycsXG4gICAgICAnSGVsZC1vdXQgdGVzdCBvbiBFY2hvZXMnLFxuICAgICAgJ0Z1bGwgc3lzdGVtLCB0d28gc2ltcGxlIHZhcmlhbnRzLCBhbmQgYW4gdW5jZXJ0YWludHkgc2NvcmUnLFxuICAgICAgJ0EgZnJlZSB3ZWIgcHJvdG90eXBlJyxcbiAgICBdLFxuICAgIGRvZXNOb3RDb3ZlcjogW1xuICAgICAgJ0ZpbGlwaW5vIG9yIG90aGVyIFBoaWxpcHBpbmUgbGFuZ3VhZ2VzJyxcbiAgICAgICdJbnN0cnVtZW50YWwtb25seSBzb25ncycsXG4gICAgICAnTGVnYWwgcHJvb2Ygb3IgdGFrZWRvd25zJyxcbiAgICAgICdXaGV0aGVyIGEgc29uZyBjb3BpZXMgYSBzcGVjaWZpYyBhcnRpc3QnLFxuICAgICAgJ0NvbW1lcmNpYWwgdXNlJyxcbiAgICBdLFxuICB9LFxuICB7XG4gICAgaWQ6ICdTMDknLFxuICAgIGNoYXB0ZXI6ICdjaDInLFxuICAgIHNlY3Rpb246ICdSRUxBVEVEIExJVEVSQVRVUkUnLFxuICAgIGhlYWRsaW5lOiAnV0hBVCBUSEUgTElURVJBVFVSRSBTQVlTLicsXG4gICAgcGxhaW46ICdFYWNoIGRlc2lnbiBjaG9pY2UgdHJhY2VzIGJhY2sgdG8gYSBwYXBlciwgd2l0aCBpdHMgbGltaXRzIG5vdGVkLicsXG4gICAgdGVjaG5pY2FsOiAnTGl0ZXJhdHVyZSByZXZpZXcgbWFwcGVkIHRvIGRlc2lnbiBkZWNpc2lvbnMsIHdpdGggc3RhdGVkIGxpbWl0YXRpb25zLicsXG4gICAgdGFrZWF3YXk6ICdFVkVSWSBERVNJR04gQ0hPSUNFIFRSQUNFUyBCQUNLIFRPIEVWSURFTkNFLCBXSVRIIElUUyBMSU1JVFMgU1RBVEVELicsXG4gICAgbGl0Tm9kZXM6IFtcbiAgICAgIHtcbiAgICAgICAgdG9waWM6ICdHRU5FUkFUSU9OJyxcbiAgICAgICAgd2hhdEl0U2F5czogJ0FJIG11c2ljIGlzIG1vcmUgcmVhbGlzdGljIGFuZCB2YXJpZWQgWzNdLVs3XScsXG4gICAgICAgIHdoYXRJdE1lYW5zRm9yS25vd1RhOiAnVGhlIGRldGVjdG9yIG11c3QgaGFuZGxlIHJlYWxpc3RpYyB2b2NhbHMgYW5kIGZ1bGwgbWl4ZXMuJyxcbiAgICAgICAgc291cmNlczogWzMsIDQsIDUsIDYsIDddLFxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgdG9waWM6ICdERVRFQ1RJT04nLFxuICAgICAgICB3aGF0SXRTYXlzOiAnRGV0ZWN0b3JzIGRlZ3JhZGUgdW5kZXIgc2ltcGxlIGNoYW5nZXMgYW5kIG9uIG5ldyBnZW5lcmF0b3JzIFsxNV0sIFsxOV0nLFxuICAgICAgICB3aGF0SXRNZWFuc0Zvcktub3dUYTogJ1dlIHRlc3Qgb24gaGVsZC1vdXQgZ2VuZXJhdG9ycyBhbmQgcmVwb3J0IHRoZSBkcm9wLicsXG4gICAgICAgIHNvdXJjZXM6IFsxNSwgMTldLFxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgdG9waWM6ICdTRVBBUkFUSU9OJyxcbiAgICAgICAgd2hhdEl0U2F5czogJ0hURGVtdWNzIHNwbGl0cyBzdGVtcyBbMjRdOyBzZXBhcmF0ZS10aGVuLWRldGVjdCBjYW4gbG9zZSBjdWVzIFsyOV0nLFxuICAgICAgICB3aGF0SXRNZWFuc0Zvcktub3dUYTogJ1dlIHRlc3Qgc2VwYXJhdGlvbiB3aXRoIGEgRnVsbCBNaXggQmFzZWxpbmUuJyxcbiAgICAgICAgc291cmNlczogWzI0LCAyOV0sXG4gICAgICB9LFxuICAgICAge1xuICAgICAgICB0b3BpYzogJ1NQRUNUUkFMJyxcbiAgICAgICAgd2hhdEl0U2F5czogJ0VmZmljaWVudE5ldC1CMCBpcyBsaWdodDsgZXZpZGVuY2UgaXMgZnJvbSBzcGVlY2ggWzI1XSwgWzM4XScsXG4gICAgICAgIHdoYXRJdE1lYW5zRm9yS25vd1RhOiAnVXNlZCBhcyBhIGxpZ2h0IGJhc2VsaW5lLCBub3QgY2xhaW1lZCBiZXN0LicsXG4gICAgICAgIHNvdXJjZXM6IFsyNSwgMzhdLFxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgdG9waWM6ICdWT0NBTCcsXG4gICAgICAgIHdoYXRJdFNheXM6XG4gICAgICAgICAgJ0JpZGlyZWN0aW9uYWwgTFNUTXMgZml0IHRpbWluZyBjdWVzIFsyNl0sIFsyN107IHRoZSBicmVhdGhpbmctcGF1c2UgaWRlYSBpcyBmcm9tIHNwZWVjaCBbMTddJyxcbiAgICAgICAgd2hhdEl0TWVhbnNGb3JLbm93VGE6ICdBIGh5cG90aGVzaXMgd2UgdGVzdCB3aXRoIHByZS1zZXQgcnVsZXMuJyxcbiAgICAgICAgc291cmNlczogWzE3LCAyNiwgMjddLFxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgdG9waWM6ICdBVFRFTlRJT04nLFxuICAgICAgICB3aGF0SXRTYXlzOlxuICAgICAgICAgICdBdHRlbnRpb24gd2VpZ2h0cyBicmFuY2hlcyBieSBjb250ZW50IFsyOF07IHRoZW9yeSBzdXBwb3J0cyBtdWx0aW1vZGFsIGdhaW5zIHVuZGVyIGFzc3VtcHRpb25zIFs0Ml0nLFxuICAgICAgICB3aGF0SXRNZWFuc0Zvcktub3dUYTogJ0NvbXBhcmVkIGRpcmVjdGx5IHdpdGggcGxhaW4gY29uY2F0ZW5hdGlvbi4nLFxuICAgICAgICBzb3VyY2VzOiBbMjgsIDQyXSxcbiAgICAgIH0sXG4gICAgICB7XG4gICAgICAgIHRvcGljOiAnVU5DRVJUQUlOVFknLFxuICAgICAgICB3aGF0SXRTYXlzOiAnTUMgRHJvcG91dCBbMzBdIGFuZCBUZW1wZXJhdHVyZSBTY2FsaW5nIFszMV0nLFxuICAgICAgICB3aGF0SXRNZWFuc0Zvcktub3dUYTpcbiAgICAgICAgICAnQ2FsaWJyYXRlZCBwZXJjZW50YWdlcywgMjAgcGFzc2VzLCBjaGVja2VkIHdpdGggY2FsaWJyYXRpb24gbWV0cmljcy4nLFxuICAgICAgICBzb3VyY2VzOiBbMzAsIDMxXSxcbiAgICAgIH0sXG4gICAgICB7XG4gICAgICAgIHRvcGljOiAnREFUQScsXG4gICAgICAgIHdoYXRJdFNheXM6ICdTT05JQ1MgZmFrZSBzb25ncyBbMzJdLCBGTUEgWzQ5XSwgRWNob2VzIFszM10nLFxuICAgICAgICB3aGF0SXRNZWFuc0Zvcktub3dUYTogJ0xlZ2FsLCBkb2N1bWVudGVkLCBhbmQgdGVzdGVkIGZvciBzaG9ydGN1dHMuJyxcbiAgICAgICAgc291cmNlczogWzMyLCAzMywgNDldLFxuICAgICAgfSxcbiAgICBdLFxuICB9LFxuICB7XG4gICAgaWQ6ICdTMTAnLFxuICAgIGNoYXB0ZXI6ICdjaDInLFxuICAgIHNlY3Rpb246ICdUSEUgREFUQScsXG4gICAgaGVhZGxpbmU6ICdURVNURUQgT04gR0VORVJBVE9SUyBJVCBIQVMgTkVWRVIgSEVBUkQuJyxcbiAgICBwbGFpbjpcbiAgICAgICdBSSBzb25ncyBmcm9tIFNPTklDUywgaHVtYW4gc29uZ3MgZnJvbSBGTUEsIGFuZCBhIHNlcGFyYXRlIGxvY2tlZCB0ZXN0IGZyb20gRWNob2VzLicsXG4gICAgdGVjaG5pY2FsOlxuICAgICAgJ1NPTklDUyBmYWtlIHNvbmdzIChTdW5vLCBVZGlvKSBhcmUgdGhlIEFJIGNsYXNzLiBGTUEgQ3JlYXRpdmUgQ29tbW9ucyBjbGlwcyBhcmUgdGhlIGh1bWFuIGNsYXNzLCB3aXRoIGVhY2ggdHJhY2tcXHUyMDE5cyBsaWNlbnNlIGxvZ2dlZC4gRWNob2VzICg0LDQ2OCBBSSB0cmFja3MgZnJvbSAxMiBwcm92aWRlcnMgcGx1cyAzMDAgaHVtYW4gcmVmZXJlbmNlIHRyYWNrcykgaXMgdXNlZCBvbmx5IGZvciBjcm9zcy1wbGF0Zm9ybSB0ZXN0aW5nIGFuZCBuZXZlciBmb3IgdHJhaW5pbmcsIHZhbGlkYXRpb24sIG9yIHRocmVzaG9sZCB0dW5pbmcuIFRlbiBwcm92aWRlcnMgYXJlIHVuc2VlbiBnZW5lcmF0b3JzICgzLDg2OCBBSSB0cmFja3MsIGFib3V0IDkzJSBvZiB0aGF0IHNldCkuJyxcbiAgICB0YWtlYXdheTogJ0NMRUFOLCBSRVBST0RVQ0lCTEUsIEFORCBIT05FU1QgQUJPVVQgTElNSVRTLicsXG4gICAgcGlwZWxpbmVDaGlwczogW1xuICAgICAgeyBsYWJlbDogJzMwIFMgTUlERExFIENMSVAnIH0sXG4gICAgICB7IGxhYmVsOiAnTVAzIDEyOCBLQlBTJyB9LFxuICAgICAgeyBsYWJlbDogJ1ZPQ0FMIEFORCBFTkdMSVNIIEZJTFRFUicgfSxcbiAgICAgIHsgbGFiZWw6ICdHRU5SRSBNQVRDSEVEJyB9LFxuICAgICAgeyBsYWJlbDogJ1NIT1JUQ1VUIENIRUNLJyB9LFxuICAgICAgeyBsYWJlbDogJzIyLDA1MCBIWicgfSxcbiAgICAgIHsgbGFiZWw6ICctMjMgTFVGUycgfSxcbiAgICBdLFxuICAgIHBpcGVsaW5lTm90ZTpcbiAgICAgICdTT05JQ1MgSFVNQU4gU09OR1MgQVJFIE5PVCBVU0VEOiBUSEVZIEFSRSBDT1BZUklHSFRFRCBZT1VUVUJFIExJTktTIEFORCBNQU5ZIE5PIExPTkdFUiBXT1JLLicsXG4gIH0sXG4gIHtcbiAgICBpZDogJ1MxMScsXG4gICAgY2hhcHRlcjogJ2NoMicsXG4gICAgc2VjdGlvbjogJ1RIRU9SRVRJQ0FMIEZSQU1FV09SSycsXG4gICAgaGVhZGxpbmU6ICdUSFJFRSBJREVBUyBCRUhJTkQgVEhFIERFU0lHTi4nLFxuICAgIHBsYWluOiAnQmF5ZXNpYW4gZG91YnQsIGF0dGVudGlvbiB3ZWlnaHRpbmcsIGFuZCB0d28gdmlld3Mgb2YgdGhlIHNhbWUgc29uZy4nLFxuICAgIHRlY2huaWNhbDpcbiAgICAgICdNb250ZSBDYXJsbyBEcm9wb3V0IGZvciB1bmNlcnRhaW50eSwgYXR0ZW50aW9uIGZ1c2lvbiBmb3IgZHluYW1pYyBicmFuY2ggd2VpZ2h0aW5nLCBhbmQgZHVhbC1icmFuY2ggbXVsdGltb2RhbCBldmlkZW5jZSBjb21iaW5hdGlvbi4nLFxuICAgIHRha2Vhd2F5OiAnRE9VQlQsIFdFSUdIVElORywgQU5EIFRXTyBWSUVXUyBNQUtFIFRIRSBWRVJESUNUIE1PUkUgSE9ORVNULicsXG4gICAgaWxsdXN0cmF0aW9uTGFiZWw6ICdJTExVU1RSQVRJT04nLFxuICB9LFxuICB7XG4gICAgaWQ6ICdTMTInLFxuICAgIGNoYXB0ZXI6ICdjaDInLFxuICAgIHNlY3Rpb246ICdDT05DRVBUVUFMIEZSQU1FV09SSycsXG4gICAgaGVhZGxpbmU6ICdJTlBVVC4gUFJPQ0VTUy4gT1VUUFVULicsXG4gICAgcGxhaW46ICdPbmUgZGlyZWN0aW9uLCBmcm9tIHJhdyBhdWRpbyB0byBhIHJlYWRhYmxlIHJlcG9ydC4nLFxuICAgIHRlY2huaWNhbDpcbiAgICAgICdFbmQtdG8tZW5kIHBpcGVsaW5lIGZyb20gZGF0YSBpbmdlc3Rpb24gdGhyb3VnaCBIVERlbXVjcywgZHVhbC1icmFuY2ggaW5mZXJlbmNlLCBhdHRlbnRpb24gZnVzaW9uLCBhbmQgY2FsaWJyYXRlZCBvdXRwdXQgZ2VuZXJhdGlvbi4nLFxuICAgIHRha2Vhd2F5OiAnT05FIERJUkVDVElPTiwgRlJPTSBSQVcgQVVESU8gVE8gQSBSRUFEQUJMRSBSRVBPUlQuJyxcbiAgICBzdGFnZXM6IFtcbiAgICAgIHtcbiAgICAgICAgbGFiZWw6ICdJbnB1dCcsXG4gICAgICAgIGl0ZW1zOiBbXG4gICAgICAgICAgJ1NPTklDUyBmYWtlICsgRk1BIGh1bWFuICh0cmFpbiwgdmFsaWRhdGUsIGludGVybmFsIHRlc3QpJyxcbiAgICAgICAgICAnRWNob2VzIChjcm9zcy1wbGF0Zm9ybSB0ZXN0KScsXG4gICAgICAgIF0sXG4gICAgICB9LFxuICAgICAge1xuICAgICAgICBsYWJlbDogJ1Byb2Nlc3MnLFxuICAgICAgICBpdGVtczogW1xuICAgICAgICAgICdIVERlbXVjcycsXG4gICAgICAgICAgJ0F1ZGlvIEJyYW5jaCAoRWZmaWNpZW50TmV0LUIwKScsXG4gICAgICAgICAgJ1ZvY2FsIEJyYW5jaCAoQmlkaXJlY3Rpb25hbCBMU1RNKScsXG4gICAgICAgICAgJ2F0dGVudGlvbiBmdXNpb24nLFxuICAgICAgICAgICdNQyBEcm9wb3V0IDIwIHBhc3NlcyArIFRlbXBlcmF0dXJlIFNjYWxpbmcnLFxuICAgICAgICBdLFxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgbGFiZWw6ICdPdXRwdXQnLFxuICAgICAgICBpdGVtczogW1xuICAgICAgICAgICdsYWJlbCcsXG4gICAgICAgICAgJ2NhbGlicmF0ZWQgY29uZmlkZW5jZScsXG4gICAgICAgICAgJ3Blci1icmFuY2ggc2NvcmVzJyxcbiAgICAgICAgICAnY29uZmxpY3QgZmxhZycsXG4gICAgICAgICAgJ3JlcG9ydCcsXG4gICAgICAgIF0sXG4gICAgICB9LFxuICAgIF0sXG4gIH0sXG4gIHtcbiAgICBpZDogJ1MxMycsXG4gICAgY2hhcHRlcjogJ21ldGhvZCcsXG4gICAgc2VjdGlvbjogJzMuNiwgMy44JyxcbiAgICBoZWFkbGluZTogJ1RoZSBLbm93LVRhIHJlcG9ydCcsXG4gICAgcGxhaW46ICdEcm9wIGEgc29uZyBpbnRvIHRoZSBwcmludGVyLiBBIHJlcG9ydCBwcmludHMgb3V0LicsXG4gICAgdGVjaG5pY2FsOlxuICAgICAgJ0RlbW8gb3V0cHV0IHNob3dpbmcgbGFiZWwsIEJheWVzaWFuIGNvbmZpZGVuY2UsIHBlci1icmFuY2ggc2NvcmVzLCBhbmQgY29uZmxpY3QgZmxhZy4nLFxuICAgIHRha2Vhd2F5OiAnQSB2ZXJkaWN0LCBhIGNvbmZpZGVuY2UsIGFuZCBhIHdhcm5pbmcgd2hlbiB0aGUgZXZpZGVuY2UgZGlzYWdyZWVzLicsXG4gICAgaWxsdXN0cmF0aW9uTGFiZWw6ICdEZW1vIG91dHB1dCwgbm90IGEgcmVzdWx0JyxcbiAgICByZWNlaXB0Rm9vdGVyOiAnRXN0aW1hdGUgb25seS4gTm90IHByb29mIG9mIGF1dGhvcnNoaXAuJyxcbiAgICByZWNlaXB0UHJlc2V0czogW1xuICAgICAge1xuICAgICAgICBsYWJlbDogJ0h1bWFuLWxpa2Ugc29uZycsXG4gICAgICAgIGFpUHJvYmFiaWxpdHk6IDgsXG4gICAgICAgIHNwcmVhZFBsdXNNaW51czogMyxcbiAgICAgICAgYXVkaW9QY3Q6IDEwLFxuICAgICAgICB2b2NhbFBjdDogNixcbiAgICAgICAgY29uZmxpY3Q6IG51bGwsXG4gICAgICB9LFxuICAgICAge1xuICAgICAgICBsYWJlbDogJ0FJLWxpa2Ugc29uZycsXG4gICAgICAgIGFpUHJvYmFiaWxpdHk6IDk0LFxuICAgICAgICBzcHJlYWRQbHVzTWludXM6IDQsXG4gICAgICAgIGF1ZGlvUGN0OiA5NixcbiAgICAgICAgdm9jYWxQY3Q6IDkxLFxuICAgICAgICBjb25mbGljdDogbnVsbCxcbiAgICAgIH0sXG4gICAgICB7XG4gICAgICAgIGxhYmVsOiAnQ29uZmxpY3Qgc29uZycsXG4gICAgICAgIGFpUHJvYmFiaWxpdHk6IDYyLFxuICAgICAgICBzcHJlYWRQbHVzTWludXM6IDE1LFxuICAgICAgICBhdWRpb1BjdDogOTAsXG4gICAgICAgIHZvY2FsUGN0OiAxNSxcbiAgICAgICAgY29uZmxpY3Q6ICdZRVMnLFxuICAgICAgICBjb25mbGljdEdhcDogMC43NSxcbiAgICAgICAgY29uZmxpY3RUaHJlc2hvbGQ6IDAuMzAsXG4gICAgICB9LFxuICAgIF0sXG4gIH0sXG5dO1xuXG5leHBvcnQgY29uc3QgcW5hOiBRbkFJdGVtW10gPSBbXG4gIHtcbiAgICBxdWVzdGlvbjogJ1doeSBGTUEgZm9yIGh1bWFuIHNvbmdzPycsXG4gICAgYW5zd2VyOlxuICAgICAgJ1NPTklDUyBodW1hbiBzb25ncyBhcmUgY29weXJpZ2h0ZWQgWW91VHViZSBsaW5rcyBhbmQgbWFueSBhcmUgZGVhZC4gRk1BIHRyYWNrcyBjYXJyeSBDcmVhdGl2ZSBDb21tb25zIGxpY2Vuc2VzIHRoYXQgd2UgbG9nIHBlciB0cmFjay4nLFxuICB9LFxuICB7XG4gICAgcXVlc3Rpb246ICdXaHkgRWNob2VzIGFzIHRoZSB0ZXN0PycsXG4gICAgYW5zd2VyOlxuICAgICAgJ0l0cyBBSSB0cmFja3MgYXJlIGJ1aWx0IHRvIHJlc2VtYmxlIGl0cyBodW1hbiByZWZlcmVuY2VzLCBzbyBzaG9ydGN1dHMgYXJlIGhhcmRlci4gSXQgaXMgbmV2ZXIgdXNlZCBmb3IgdHJhaW5pbmcgb3IgdHVuaW5nLicsXG4gIH0sXG4gIHtcbiAgICBxdWVzdGlvbjogJ1doeSBzcGxpdCB3aXRoIERlbXVjcyBmaXJzdD8nLFxuICAgIGFuc3dlcjpcbiAgICAgICdFYWNoIGJyYW5jaCBnZXRzIGNsZWFuZXIgZXZpZGVuY2UuIEJ1dCBzZXBhcmF0aW9uIGNhbiBoaWRlIGN1ZXMgWzI5XSwgc28gYSBGdWxsIE1peCBCYXNlbGluZSB0ZXN0cyB3aGV0aGVyIGl0IGhlbHBzLicsXG4gIH0sXG4gIHtcbiAgICBxdWVzdGlvbjogJ1doYXQgaWYgdGhlIFZvY2FsIEJyYW5jaCBkb2VzIG5vdCBoZWxwPycsXG4gICAgYW5zd2VyOlxuICAgICAgJ1dlIHNldCBydWxlcyBpbiBhZHZhbmNlIChWb2NhbCBvbmx5IE1hY3JvIEYxIGF0IGxlYXN0IDAuNjAgb24gdmFsaWRhdGlvbiwgbWVhbiBiZXRhIGF0IGxlYXN0IDAuMTApLiBJZiBpdCBmYWlscywgd2UgcmVwb3J0IGEgbmVnYXRpdmUgcmVzdWx0IGFuZCB0cnkgTWVsIGZyYW1lcyBvbmNlLicsXG4gIH0sXG4gIHtcbiAgICBxdWVzdGlvbjogJ1doeSBFZmZpY2llbnROZXQtQjA/JyxcbiAgICBhbnN3ZXI6XG4gICAgICAnSXQgaXMgbGlnaHQgZW5vdWdoIGZvciBhIENQVSB3ZWIgYXBwLiBUaGUgZXZpZGVuY2UgY29tZXMgZnJvbSBzcGVlY2gsIHNvIHdlIGNhbGwgaXQgc3VwcG9ydGluZywgbm90IGNvbmNsdXNpdmUuJyxcbiAgfSxcbiAge1xuICAgIHF1ZXN0aW9uOiAnSG93IHRydXN0d29ydGh5IGFyZSB0aGUgcGVyY2VudGFnZXM/JyxcbiAgICBhbnN3ZXI6XG4gICAgICAnMjAgTW9udGUgQ2FybG8gcGFzc2VzIHBsdXMgVGVtcGVyYXR1cmUgU2NhbGluZywgY2hlY2tlZCB3aXRoIGNhbGlicmF0aW9uIGVycm9yLCBCcmllciBzY29yZSwgYW5kIHJlbGlhYmlsaXR5IGRpYWdyYW1zLiBXZSBleHBlY3Qgd29yc2UgY2FsaWJyYXRpb24gb24gRWNob2VzLicsXG4gIH0sXG4gIHtcbiAgICBxdWVzdGlvbjogJ0lzIHRoaXMgcHJvb2YgYSBzb25nIGlzIEFJPycsXG4gICAgYW5zd2VyOiAnTm8uIEl0IGlzIGEgcHJvYmFiaWxpc3RpYyBlc3RpbWF0ZSBhbmQgbm90IGxlZ2FsIGV2aWRlbmNlLicsXG4gIH0sXG4gIHtcbiAgICBxdWVzdGlvbjogJ1doeSBvbmx5IEVuZ2xpc2g/JyxcbiAgICBhbnN3ZXI6ICdUaGUgZGF0YXNldHMgYXJlIEVuZ2xpc2guIEZpbGlwaW5vIHNvbmdzIGFyZSBmdXR1cmUgd29yay4nLFxuICB9LFxuICB7XG4gICAgcXVlc3Rpb246ICdXaHkgbm8gRGF2YW8gc291cmNlPycsXG4gICAgYW5zd2VyOlxuICAgICAgJ05vbmUgd2FzIGZvdW5kLCBzbyB3ZSB1c2VkIG5hdGlvbmFsIGFuZCBpbnRlcm5hdGlvbmFsIGV2aWRlbmNlLiBBIGxvY2FsIHN1cnZleSBpcyBhIGZ1dHVyZSBzdGVwLicsXG4gIH0sXG4gIHtcbiAgICBxdWVzdGlvbjogJ1doeSBjb3VsZCBFY2hvZXMgc2NvcmVzIGJlIGxvd2VyPycsXG4gICAgYW5zd2VyOlxuICAgICAgJ0VjaG9lcyBpcyBidWlsdCB0byBiZSBoYXJkLiBMb3dlciBzY29yZXMgdGhhbiB0aGUgaW50ZXJuYWwgdGVzdCBhcmUgZXhwZWN0ZWQgYW5kIGFyZSBub3QgYnkgdGhlbXNlbHZlcyBhIGZhaWx1cmUuJyxcbiAgfSxcbl07XG5cbmV4cG9ydCBjb25zdCBTQ0VORV9DT1VOVCA9IHNjZW5lcy5sZW5ndGg7XG5cbmV4cG9ydCBjb25zdCBDSEFQVEVSX0xBQkVMUzogUmVjb3JkPENoYXB0ZXIsIHN0cmluZz4gPSB7XG4gIGNoMTogJ0NoLiAxJyxcbiAgY2gyOiAnQ2guIDInLFxuICBtZXRob2Q6ICdNZXRob2QnLFxufTtcbiJdfQ==
