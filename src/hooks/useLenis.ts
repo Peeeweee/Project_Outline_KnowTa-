@@ -2,14 +2,12 @@
 // Initializes Lenis smooth scroll. Scrolls to sections on demand.
 import { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
-import { useDeckStore } from '../store/deckStore';
 
 let globalLenis: Lenis | null = null;
 export function getLenis() { return globalLenis; }
 
 export function useLenis() {
   const lenisRef = useRef<Lenis | null>(null);
-  const { currentSection, getActiveSections } = useDeckStore();
 
   // Create Lenis once
   useEffect(() => {
@@ -24,12 +22,13 @@ export function useLenis() {
     globalLenis = lenis;
     (window as any).__lenis = lenis;
 
+    let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    const rafId = requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
       cancelAnimationFrame(rafId);
@@ -40,16 +39,8 @@ export function useLenis() {
     };
   }, []);
 
-  // Scroll to the active section wrapper when currentSection changes
-  useEffect(() => {
-    const active = getActiveSections();
-    const slug = active[currentSection]?.slug;
-    if (!slug) return;
-    const el = document.querySelector(`[data-scene="${slug}"]`) as HTMLElement | null;
-    if (el && lenisRef.current) {
-      lenisRef.current.scrollTo(el, { immediate: false });
-    }
-  }, [currentSection, getActiveSections]);
+  // Navigation controls request scrolling directly. The section observer only
+  // updates progress; scrolling in response to it would interrupt navigation.
 
   return lenisRef;
 }

@@ -130,8 +130,8 @@ export function SectionShell({
   const isDark = theme === 'dark';
   return (
     <section 
-      className={`relative w-full h-screen min-h-[100svh] flex flex-col items-center justify-center overflow-hidden py-[clamp(112px,14vh,160px)] select-none ${isDark ? 'glow-dark' : 'paper-light'} ${className}`}
-      style={{ backgroundColor: isDark ? 'var(--black)' : 'var(--paper)', color: isDark ? 'var(--white)' : 'var(--black)' }}
+      className={`relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden select-none ${isDark ? 'glow-dark' : 'paper-light'} ${className}`}
+      style={{ backgroundColor: isDark ? 'var(--black)' : 'var(--paper)', color: isDark ? 'var(--white)' : 'var(--black)', paddingBlock: 'clamp(112px,14vh,160px)' }}
       {...props}
     >
       {isDark && <div className="grain pointer-events-none" />}

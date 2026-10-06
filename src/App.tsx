@@ -93,7 +93,7 @@ function DeckSection({
       className="relative print-scene"
     >
       <div
-        className={`sticky top-0 overflow-y-auto overflow-x-hidden max-h-[100dvh] scrollbar-none \${index > 0 ? 'border-t border-white/10 shadow-[0_-1px_20px_rgba(0,0,0,0.2)]' : ''}`}
+        className={`sticky top-0 overflow-hidden ${index > 0 ? 'border-t border-white/10 shadow-[0_-1px_20px_rgba(0,0,0,0.2)]' : ''}`}
         style={{
           zIndex: index + 1,
           borderTopLeftRadius: index > 0 ? 24 : 0,

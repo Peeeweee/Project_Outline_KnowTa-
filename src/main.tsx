@@ -2,6 +2,7 @@
 // React entry point. Imports theme CSS before rendering.
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { LazyMotion, domMax } from 'motion/react';
 import './styles/theme.css';
 import App from './App';
 
@@ -10,6 +11,8 @@ if (!rootEl) throw new Error('Root element not found');
 
 createRoot(rootEl).render(
   <StrictMode>
-    <App />
+    <LazyMotion features={domMax}>
+      <App />
+    </LazyMotion>
   </StrictMode>,
 );
