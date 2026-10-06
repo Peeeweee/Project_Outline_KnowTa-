@@ -34,7 +34,7 @@ export function S10Data({ data }: { data: SceneData; isActive: boolean }) {
   const handleDetailsClick = () => {
     setActiveDetail({
       title: 'Data details',
-      body: `Pipeline: ${data.pipelineChips?.map(c => c.label).join(', ')}\n\nNote: ${data.pipelineNote}`,
+      body: `${data.technical}\n\nPipeline: ${data.pipelineChips?.map(c => c.label).join(', ')}\n\nNote: ${data.pipelineNote}`,
     });
   };
 
@@ -97,7 +97,7 @@ export function S10Data({ data }: { data: SceneData; isActive: boolean }) {
             </m.div>
             
             <div className="absolute -bottom-8 left-0 right-0 text-center font-mono text-[10px] text-gray-400">
-              FILLED = SEEN IN TRAINING, HOLLOW = UNSEEN
+              FILLED = FAMILIAR PLATFORM / HOLLOW = UNSEEN PROVIDER
             </div>
           </div>
 

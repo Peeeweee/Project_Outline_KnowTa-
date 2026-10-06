@@ -173,7 +173,7 @@ export function QnADrawer() {
                 className="px-6 py-3 border-t bg-black/30 flex items-center justify-between font-mono text-[10px] uppercase tracking-wider text-white/40 shrink-0"
                 style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}
               >
-                <span>KNOW-TA! THESIS DEFENSE · CH 1 & 2</span>
+                <span>KNOW-TA! OUTLINE DEFENSE PROPOSAL</span>
                 <span>PRESS ESC TO CLOSE</span>
               </div>
             </m.div>

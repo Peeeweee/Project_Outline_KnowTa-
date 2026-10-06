@@ -44,13 +44,13 @@ export function S11Theory({ data }: { data: SceneData; isActive: boolean }) {
                 onClick={() => { setIsHard(false); setDots([]); }}
                 className={`text-xs px-3 py-1 border rounded-full transition-colors ${!isHard ? 'border-white bg-white text-black' : 'border-white/20 text-white/60'}`}
               >
-                EASY
+                LOW SPREAD
               </button>
               <button 
                 onClick={() => { setIsHard(true); setDots([]); }}
                 className={`text-xs px-3 py-1 border rounded-full transition-colors ${isHard ? 'border-white bg-white text-black' : 'border-white/20 text-white/60'}`}
               >
-                HARD
+                HIGH SPREAD
               </button>
             </div>
 
@@ -58,7 +58,7 @@ export function S11Theory({ data }: { data: SceneData; isActive: boolean }) {
               onClick={handleRunPasses}
               className="px-4 py-2 text-[10px] border border-white/40 rounded-full hover:bg-white/10 mb-8"
             >
-              RUN 20 PASSES
+              SHOW 20 ILLUSTRATIVE PASSES
             </button>
 
             <div className="w-full relative h-4 mt-auto mb-6 flex items-center justify-center">
@@ -75,7 +75,7 @@ export function S11Theory({ data }: { data: SceneData; isActive: boolean }) {
               ))}
             </div>
 
-            <p className="card-text text-gray-400">Spread is doubt.</p>
+            <p className="card-text text-gray-400">Pass spread is not a correctness interval.</p>
             <div className="absolute bottom-4 left-4 text-[9px] font-mono border border-white/20 px-2 py-0.5 rounded-full text-white/40">ILLUSTRATION</div>
           </Frame>
 
@@ -104,7 +104,7 @@ export function S11Theory({ data }: { data: SceneData; isActive: boolean }) {
               </div>
             </div>
 
-            <p className="card-text text-gray-400">The model picks who to trust.</p>
+            <p className="card-text text-gray-400">Learned weights need experimental validation.</p>
             <div className="absolute bottom-4 left-4 text-[9px] font-mono border border-white/20 px-2 py-0.5 rounded-full text-white/40">ILLUSTRATION</div>
           </Frame>
 
@@ -118,7 +118,7 @@ export function S11Theory({ data }: { data: SceneData; isActive: boolean }) {
               <div className="relative z-10 w-8 h-8 bg-black border border-white flex items-center justify-center rotate-45" />
             </div>
 
-            <p className="card-text text-gray-400">Two lenses, one verdict.</p>
+            <p className="card-text text-gray-400">Two views; benefit must be measured.</p>
             <div className="absolute bottom-4 left-4 text-[9px] font-mono border border-white/20 px-2 py-0.5 rounded-full text-white/40">ILLUSTRATION</div>
           </Frame>
 

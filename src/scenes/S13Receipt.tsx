@@ -24,7 +24,7 @@ export function S13Receipt({ data }: { data: SceneData; isActive: boolean }) {
         
         <LineReveal delay={0}>
 <h2 className="headline mb-6">
-          The <span className="script-word">verdict</span>, printed.
+          The proposed <span className="script-word">report</span>.
         </h2>
 </LineReveal>
         <LineReveal delay={0.12}>
@@ -69,7 +69,7 @@ export function S13Receipt({ data }: { data: SceneData; isActive: boolean }) {
                     className="w-[92%] bg-paper text-black p-6 shadow-2xl relative font-mono text-[11px] leading-relaxed flex flex-col"
                   >
                     <div className="text-center mb-6 font-bold uppercase tracking-widest border-b border-black/20 pb-4">
-                      KNOW-TA! AUTHENTICITY REPORT
+                      KNOW-TA! ILLUSTRATIVE DETECTION REPORT
                     </div>
                     
                     <div className="flex flex-col gap-4">
@@ -84,17 +84,17 @@ export function S13Receipt({ data }: { data: SceneData; isActive: boolean }) {
                       </div>
                       
                       <div className="flex justify-between items-end border-b border-black/10 pb-2">
-                        <span className="opacity-50 text-[9px]">BAYESIAN SPREAD</span>
-                        <span>±{activePreset.spreadPlusMinus}%</span>
+                        <span className="opacity-50 text-[9px]">DROPOUT SD</span>
+                        <span>{activePreset.spreadPlusMinus} p.p.</span>
                       </div>
                       
                       <div className="flex justify-between items-end border-b border-black/10 pb-2">
-                        <span className="opacity-50 text-[9px]">AUDIO BRANCH</span>
+                        <span className="opacity-50 text-[9px]">AUDIO P(AI)</span>
                         <span>{activePreset.audioPct}%</span>
                       </div>
                       
                       <div className="flex justify-between items-end border-b border-black/10 pb-2">
-                        <span className="opacity-50 text-[9px]">VOCAL BRANCH</span>
+                        <span className="opacity-50 text-[9px]">VOCAL P(AI)</span>
                         <span>{activePreset.vocalPct}%</span>
                       </div>
                       

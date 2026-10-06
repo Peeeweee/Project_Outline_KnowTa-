@@ -73,7 +73,7 @@ function QuestionCard({ card, i, label, calmMode }: { card: any, i: number, labe
         >
           <Frame className="w-full h-full flex flex-col justify-center p-6 bg-black text-white">
             <div className="text-[13px] mb-4 text-left leading-relaxed"><span className="text-gray-500 font-mono">Q //</span> {card.shortQuestion}</div>
-            <div className="text-[13px] text-left leading-relaxed"><span className="text-gray-500 font-mono">H //</span> {card.shortHypothesis}</div>
+            <div className="text-[13px] text-left leading-relaxed"><span className="text-gray-500 font-mono">TEST //</span> {card.shortHypothesis}</div>
           </Frame>
         </div>
       </m.div>

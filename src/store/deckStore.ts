@@ -15,18 +15,18 @@ export interface SectionDef {
 }
 
 export const sectionDefs: SectionDef[] = [
-  { slug: 'hero',       sceneIds: ['S01'],       theme: 'dark',  headline: 'Can you tell which song is human?', label: 'Title', takeaway: 'Listening alone is no longer enough.' },
-  { slug: 'numbers',    sceneIds: ['S02'],       theme: 'dark',  headline: "THE UPLOADS NEVER STOP. LISTENING CAN'T KEEP UP.", label: 'THE SCALE', takeaway: 'People cannot hear the difference, and the volume is growing.' },
-  { slug: 'home',       sceneIds: ['S04'],       theme: 'light', headline: 'THE SAME WORRY, CLOSER TO HOME.', label: 'CLOSER TO HOME', takeaway: 'Local artists have little protection and no simple way to check a song.' },
-  { slug: 'gap',        sceneIds: ['S05'],       theme: 'light', headline: "Today's detectors break in five ways", label: '1.1 Background', takeaway: 'High lab scores do not mean reliable detection.' },
-  { slug: 'idea',       sceneIds: ['S06'],       theme: 'dark',  headline: 'SPLIT THE SONG. JUDGE EACH PART. SHOW DOUBT.', label: 'THE METHOD AT A GLANCE', takeaway: 'TWO KINDS OF EVIDENCE, ONE HONEST CONFIDENCE SCORE.' },
-  { slug: 'questions',  sceneIds: ['S07'],       theme: 'light', headline: 'Four questions, four testable predictions', label: '1.2 Statement of the Problem, 1.3 Hypotheses', takeaway: 'Every claim can be rejected, and we report it if it is.' },
-  { slug: 'scope',      sceneIds: ['S08'],       theme: 'dark',  headline: "WHAT WE COVER. WHAT WE DON'T.", label: 'SCOPE', takeaway: 'Clear limits make the results fair to read.' },
-  { slug: 'literature', sceneIds: ['S09'],       theme: 'light', headline: 'WHAT THE LITERATURE SAYS.', label: 'RELATED LITERATURE', takeaway: 'Every design choice traces back to evidence, with its limits stated.' },
-  { slug: 'data',       sceneIds: ['S10'],       theme: 'light', headline: 'TESTED ON GENERATORS IT HAS NEVER HEARD.', label: 'THE DATA', takeaway: 'CLEAN, REPRODUCIBLE, AND HONEST ABOUT LIMITS.' },
-  { slug: 'theory',     sceneIds: ['S11'],       theme: 'dark',  headline: 'THREE IDEAS BEHIND THE DESIGN.', label: 'THEORETICAL FRAMEWORK', takeaway: 'DOUBT, WEIGHTING, AND TWO VIEWS MAKE THE VERDICT MORE HONEST.' },
-  { slug: 'framework',  sceneIds: ['S12'],       theme: 'light', headline: 'INPUT. PROCESS. OUTPUT.', label: 'CONCEPTUAL FRAMEWORK', takeaway: 'ONE DIRECTION, FROM RAW AUDIO TO A READABLE REPORT.' },
-  { slug: 'verdict',    sceneIds: ['S13'],       theme: 'dark',  headline: 'THE VERDICT, PRINTED.', label: 'THE REPORT', takeaway: 'A VERDICT, A CONFIDENCE, AND A WARNING WHEN THE EVIDENCE DISAGREES.' },
+  { slug: 'hero',       sceneIds: ['S01'],       theme: 'dark',  headline: "Know what you’re hearing.", label: 'Title', takeaway: "Two branches. A testable proposal. An estimate with limits." },
+  { slug: 'numbers',    sceneIds: ['S02'],       theme: 'dark',  headline: "The uploads never stop.", label: 'THE SCALE', takeaway: "Detection needs evidence beyond a listening test." },
+  { slug: 'home',       sceneIds: ['S04'],       theme: 'light', headline: "A local reason to ask better questions.", label: 'CLOSER TO HOME', takeaway: "Support careful review before making an accusation." },
+  { slug: 'gap',        sceneIds: ['S05'],       theme: 'light', headline: "A high lab score is only the beginning.", label: '1.1 Background', takeaway: "Test transfer, contribution, calibration and disagreement separately." },
+  { slug: 'idea',       sceneIds: ['S06'],       theme: 'dark',  headline: "Split the song. Compare the evidence.", label: 'THE METHOD AT A GLANCE', takeaway: "The voice may add value. The experiments must show it." },
+  { slug: 'questions',  sceneIds: ['S07'],       theme: 'light', headline: "Every claim needs a test.", label: "RESEARCH QUESTIONS & EVALUATION", takeaway: "A negative result is still a research result." },
+  { slug: 'scope',      sceneIds: ['S08'],       theme: 'dark',  headline: "Clear boundaries. Fair conclusions.", label: 'SCOPE', takeaway: "An estimated probability does not establish authorship." },
+  { slug: 'literature', sceneIds: ['S09'],       theme: 'light', headline: "Build on evidence. Keep its limits.", label: 'RELATED LITERATURE', takeaway: "The contribution is what the controlled evaluation establishes." },
+  { slug: 'data',       sceneIds: ['S10'],       theme: 'light', headline: "A test beyond familiar platforms.", label: 'THE DATA', takeaway: "Published inventory is not the final eligible test size." },
+  { slug: 'theory',     sceneIds: ['S11'],       theme: 'dark',  headline: "Show the score. Show the uncertainty.", label: 'THEORETICAL FRAMEWORK', takeaway: "A confident model can still be wrong on unfamiliar music." },
+  { slug: 'framework',  sceneIds: ['S12'],       theme: 'light', headline: "One recording. A readable report.", label: 'CONCEPTUAL FRAMEWORK', takeaway: "Keep learning, calibration and final testing in separate stages." },
+  { slug: 'verdict',    sceneIds: ['S13'],       theme: 'dark',  headline: "The proposed report.", label: 'THE REPORT', takeaway: "Probabilities support review; they do not certify authenticity." },
   { slug: 'footer',     sceneIds: [],            theme: 'dark',  headline: 'KNOW-TA!', label: 'FOOTER', takeaway: 'QUESTIONS? PRESS Q.' },
 ];
 
